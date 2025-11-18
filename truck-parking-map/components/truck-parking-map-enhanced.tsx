@@ -1193,26 +1193,69 @@ export default function TruckParkingMapEnhanced() {
                       <div className="mb-4 p-4 bg-orange-50 border border-orange-200 rounded-lg">
                         <h4 className="font-semibold text-base mb-2 flex items-center gap-2">
                           <div className="w-3 h-3 rounded-full bg-orange-600" />
-                          Detected Parking Spaces Overlay
+                          Individual Parking Spaces - 3-Layer System
                         </h4>
-                        <div className="space-y-2 text-muted-foreground">
+                        <div className="space-y-3 text-muted-foreground">
                           <p>
-                            <strong>Source:</strong> Satellite imagery analysis and aerial photography interpretation
+                            <strong>Total Coverage:</strong> {(osmParkingSpaces?.features?.length || 0) + (estimatedParkingSpaces?.features?.length || 0)} individual parking spaces across South Holland
                           </p>
-                          <p>
-                            <strong>Coverage:</strong> {(osmParkingSpaces?.features?.length || 0) + (estimatedParkingSpaces?.features?.length || 0)} individual parking spaces (OSM + estimated)
+
+                          {/* Layer 1: OSM Truck Spaces */}
+                          <div className="pl-3 border-l-2 border-red-400">
+                            <p className="text-sm mb-1">
+                              <strong className="text-red-700">🚛 Layer 1: OSM Truck Spaces (Red)</strong>
+                            </p>
+                            <p className="text-xs">
+                              Individual truck parking spaces (N2/N3) extracted from OpenStreetMap. Size-based classification:
+                              spaces ≥30m² with truck designation tags. Includes HGV and LZV (25.25m) spaces.
+                            </p>
+                          </div>
+
+                          {/* Layer 2: OSM Van/Car Spaces */}
+                          <div className="pl-3 border-l-2 border-blue-400">
+                            <p className="text-sm mb-1">
+                              <strong className="text-blue-700">🚐 Layer 2: OSM Van/Car Spaces (Blue)</strong>
+                            </p>
+                            <p className="text-xs">
+                              Individual car/van parking spaces (N1) extracted from OpenStreetMap. Size-based classification:
+                              spaces &lt;30m² automatically classified as N1, preventing misclassification of small spaces.
+                            </p>
+                          </div>
+
+                          {/* Layer 3: Estimated Spaces */}
+                          <div className="pl-3 border-l-2 border-purple-400">
+                            <p className="text-sm mb-1">
+                              <strong className="text-purple-700">📐 Layer 3: Estimated Spaces (Purple)</strong>
+                            </p>
+                            <p className="text-xs mb-2">
+                              For parking areas without individual space mapping: algorithmically generated parking spaces
+                              using capacity data and polygon area. <strong className="text-purple-900">NEW: Satellite-based rotation detection!</strong>
+                            </p>
+                            <div className="bg-purple-100 p-2 rounded text-xs space-y-1">
+                              <p><strong>🛰️ Satellite Analysis Pipeline:</strong></p>
+                              <ol className="list-decimal list-inside space-y-1 ml-2">
+                                <li>Fetch PDOK 2023 high-resolution aerial imagery for each parking area</li>
+                                <li>Apply computer vision: edge detection + Hough Line Transform</li>
+                                <li>Detect dominant parking space orientation angle (0-180°)</li>
+                                <li>Apply rotation to estimated grid to match real-world layout</li>
+                                <li>Result: Purple boxes align with actual parking space angles on satellite imagery</li>
+                              </ol>
+                            </div>
+                          </div>
+
+                          <p className="text-xs pt-2">
+                            <strong>Size-Based Classification:</strong> N1 (car/van): 2.5m×5.0m = 12.5m² •
+                            N2/N3 (truck): 4.0m×15.0m = 60m² • Threshold: 30m²
                           </p>
-                          <p>
-                            <strong>Features:</strong> Individual parking space polygons with dimensions (length × width),
-                            area calculations, and facility associations.
+
+                          <p className="text-xs">
+                            <strong>Visibility:</strong> All parking space layers only displayed at zoom level 13+ for performance optimization
                           </p>
-                          <p>
-                            <strong>Visibility:</strong> Only displayed at zoom level 13+ for performance optimization
-                          </p>
+
                           <div className="mt-2 pt-2 border-t border-orange-300">
                             <p className="text-xs">
-                              <strong>Data Sources:</strong> PDOK Aerial 25cm resolution imagery •
-                              Provides ground-truth validation for capacity estimates
+                              <strong>Technologies:</strong> OpenCV (edge detection) • Hough Line Transform (orientation) •
+                              Shapely (geometry rotation) • PDOK WMS (satellite imagery)
                             </p>
                           </div>
                         </div>

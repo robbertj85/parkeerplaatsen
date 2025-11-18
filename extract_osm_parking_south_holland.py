@@ -6,14 +6,58 @@ This script:
 1. Loads South Holland truck parking facilities
 2. Queries OSM Overpass API for each facility
 3. Extracts individual parking spaces (amenity=parking_space)
-4. Classifies parking by vehicle type (car/van, truck, LZV)
+4. Classifies parking by vehicle type (car/van, truck, LZV) using size-based analysis
 5. Generates comprehensive GeoJSON overlay with all parking spaces
 """
 
 import json
 import requests
-from typing import List, Dict
+from typing import List, Dict, Optional
 import time
+import math
+
+# Approximate meters per degree at Netherlands latitude (52°N)
+METERS_PER_DEGREE_LAT = 111320
+METERS_PER_DEGREE_LON = 70000  # Adjusted for latitude
+
+# Vehicle type classification thresholds
+# N1 (car/van): typically 2.5m × 5.0m = 12.5 m²
+# N2/N3 (truck): typically 4.0m × 15.0m = 60 m²
+# Threshold: spaces < 30 m² are too small for trucks
+SIZE_THRESHOLD_M2 = 30.0
+
+def calculate_polygon_area_m2(coords: List[List[float]], centroid_lat: float) -> float:
+    """
+    Calculate approximate area of polygon in square meters.
+
+    Args:
+        coords: Polygon coordinates [[lon, lat], ...]
+        centroid_lat: Latitude for conversion calculations
+
+    Returns:
+        Area in square meters
+    """
+    if len(coords) < 3:
+        return 0.0
+
+    try:
+        # Calculate area using shoelace formula (in degrees²)
+        area_deg2 = 0.0
+        n = len(coords)
+        for i in range(n):
+            j = (i + 1) % n
+            area_deg2 += coords[i][0] * coords[j][1]
+            area_deg2 -= coords[j][0] * coords[i][1]
+        area_deg2 = abs(area_deg2) / 2.0
+
+        # Convert to square meters
+        lat_m_per_deg = METERS_PER_DEGREE_LAT
+        lon_m_per_deg = METERS_PER_DEGREE_LON * math.cos(math.radians(centroid_lat))
+        area_m2 = area_deg2 * lat_m_per_deg * lon_m_per_deg
+
+        return area_m2
+    except Exception as e:
+        return 0.0
 
 def query_osm_parking_for_facility(lat: float, lon: float, facility_name: str, radius_m: int = 300) -> Dict:
     """
@@ -65,17 +109,35 @@ def query_osm_parking_for_facility(lat: float, lon: float, facility_name: str, r
         print(f"  ⚠ Error querying OSM for {facility_name}: {e}")
         return {'elements': []}
 
-def classify_parking_from_osm(tags: Dict) -> Dict:
+def classify_parking_from_osm(tags: Dict, area_m2: Optional[float] = None) -> Dict:
     """
-    Classify parking type from OSM tags.
+    Classify parking type from OSM tags and size.
+
+    Uses size-based classification to distinguish between:
+    - N1 vehicles (car/van): < 30 m²
+    - N2/N3 vehicles (truck): >= 30 m²
 
     Args:
         tags: OSM element tags
+        area_m2: Calculated area in square meters (if available)
 
     Returns:
-        Classification info
+        Classification info with vehicle_type, label, color
     """
-    # Check for HGV/truck designation
+    # SIZE-BASED CLASSIFICATION (PRIORITY)
+    # If we have area information, use it to classify
+    if area_m2 is not None and area_m2 > 0:
+        if area_m2 < SIZE_THRESHOLD_M2:
+            # Too small for trucks - must be car/van (N1)
+            return {
+                'vehicle_type': 'car',
+                'label': 'Car/Van Parking Space (N1)',
+                'color': '#3b82f6',  # blue
+                'is_hgv': False,
+                'area_m2': area_m2
+            }
+
+    # Check for HGV/truck designation in tags
     is_hgv = (
         tags.get('hgv') in ['designated', 'yes'] or
         tags.get('capacity:hgv') or
@@ -85,7 +147,7 @@ def classify_parking_from_osm(tags: Dict) -> Dict:
         'vrachtwagen' in tags.get('name', '').lower()
     )
 
-    # Determine vehicle type
+    # Determine vehicle type based on tags
     if is_hgv:
         # Check if it could be LZV based on name or tags
         is_lzv = (
@@ -100,22 +162,41 @@ def classify_parking_from_osm(tags: Dict) -> Dict:
             color = '#7c2d12'  # dark brown
         else:
             vehicle_type = 'truck'
-            label = 'Truck Parking Space'
+            label = 'Truck Parking Space (N2/N3)'
             color = '#ef4444'  # red
     else:
-        # Default to truck if in our truck parking dataset
-        vehicle_type = 'truck'
-        label = 'Truck Parking Space'
-        color = '#ef4444'
+        # Check for explicit car designation
+        is_car = (
+            tags.get('car') in ['designated', 'yes'] or
+            tags.get('motor_vehicle') == 'yes' or
+            'car' in tags.get('name', '').lower() or
+            'auto' in tags.get('name', '').lower()
+        )
 
-    return {
+        if is_car:
+            vehicle_type = 'car'
+            label = 'Car/Van Parking Space (N1)'
+            color = '#3b82f6'  # blue
+        else:
+            # No clear indication - default to car/van for safety
+            # (truck parking should be explicitly marked)
+            vehicle_type = 'car'
+            label = 'Car/Van Parking Space (N1)'
+            color = '#3b82f6'  # blue
+
+    result = {
         'vehicle_type': vehicle_type,
         'label': label,
         'color': color,
         'is_hgv': is_hgv
     }
 
-def extract_parking_from_osm(osm_data: Dict, facility_id: str, facility_name: str) -> Dict:
+    if area_m2 is not None:
+        result['area_m2'] = area_m2
+
+    return result
+
+def extract_parking_from_osm(osm_data: Dict, facility_id: str, facility_name: str, facility_lat: float) -> Dict:
     """
     Extract and classify parking data from OSM response.
 
@@ -150,16 +231,11 @@ def extract_parking_from_osm(osm_data: Dict, facility_id: str, facility_name: st
             result['has_osm_data'] = True
             result['individual_spaces_count'] += 1
 
-            classification = classify_parking_from_osm(tags)
+            # Extract geometry FIRST (needed for area calculation)
+            geometry = None
+            coords = None
+            area_m2 = None
 
-            space = {
-                'osm_id': element['id'],
-                'osm_type': element['type'],
-                'classification': classification,
-                'tags': tags
-            }
-
-            # Extract geometry
             if element['type'] == 'way' and 'nodes' in element:
                 coords = []
                 for node_id in element['nodes']:
@@ -168,23 +244,60 @@ def extract_parking_from_osm(osm_data: Dict, facility_id: str, facility_name: st
                         coords.append([node['lon'], node['lat']])
 
                 if len(coords) >= 3:
-                    space['geometry'] = {
+                    geometry = {
                         'type': 'Polygon',
                         'coordinates': [coords]
                     }
+                    # Calculate area for size-based classification
+                    area_m2 = calculate_polygon_area_m2(coords, facility_lat)
+
             elif element['type'] == 'node':
-                # Point geometry for node-based spaces
-                space['geometry'] = {
+                # Point geometry for node-based spaces (no area)
+                geometry = {
                     'type': 'Point',
                     'coordinates': [element['lon'], element['lat']]
                 }
+
+            # NOW classify with area information
+            classification = classify_parking_from_osm(tags, area_m2)
+
+            space = {
+                'osm_id': element['id'],
+                'osm_type': element['type'],
+                'classification': classification,
+                'tags': tags
+            }
+
+            if geometry:
+                space['geometry'] = geometry
 
             result['osm_parking_spaces'].append(space)
 
         # Parking areas (for context and capacity)
         elif tags.get('amenity') == 'parking':
             result['has_osm_data'] = True
-            classification = classify_parking_from_osm(tags)
+
+            # Extract geometry FIRST (needed for area calculation)
+            geometry = None
+            area_m2 = None
+
+            if element['type'] == 'way' and 'nodes' in element:
+                coords = []
+                for node_id in element['nodes']:
+                    if node_id in nodes:
+                        node = nodes[node_id]
+                        coords.append([node['lon'], node['lat']])
+
+                if len(coords) >= 3:
+                    geometry = {
+                        'type': 'Polygon',
+                        'coordinates': [coords]
+                    }
+                    # Calculate area for size-based classification
+                    area_m2 = calculate_polygon_area_m2(coords, facility_lat)
+
+            # NOW classify with area information
+            classification = classify_parking_from_osm(tags, area_m2)
 
             # Extract capacity
             capacity = tags.get('capacity', 0)
@@ -205,19 +318,8 @@ def extract_parking_from_osm(osm_data: Dict, facility_id: str, facility_name: st
                 'tags': tags
             }
 
-            # Extract geometry for ways
-            if element['type'] == 'way' and 'nodes' in element:
-                coords = []
-                for node_id in element['nodes']:
-                    if node_id in nodes:
-                        node = nodes[node_id]
-                        coords.append([node['lon'], node['lat']])
-
-                if len(coords) >= 3:
-                    parking_area['geometry'] = {
-                        'type': 'Polygon',
-                        'coordinates': [coords]
-                    }
+            if geometry:
+                parking_area['geometry'] = geometry
 
             result['osm_parking_areas'].append(parking_area)
 
@@ -266,7 +368,7 @@ def analyze_all_south_holland_facilities():
 
         # Query OSM
         osm_data = query_osm_parking_for_facility(lat, lon, facility_name, radius_m=300)
-        parking_data = extract_parking_from_osm(osm_data, str(facility_id), facility_name)
+        parking_data = extract_parking_from_osm(osm_data, str(facility_id), facility_name, lat)
 
         # Add facility info
         parking_data['facility_lat'] = lat
