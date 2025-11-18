@@ -87,7 +87,8 @@ def fetch_satellite_image(polygon_coords: List[List[float]], buffer_m: float = 2
         lat_buffer = buffer_m / METERS_PER_DEGREE_LAT
         lon_buffer = buffer_m / (METERS_PER_DEGREE_LON * math.cos(math.radians(centroid_lat)))
 
-        bbox = f"{min_lon - lon_buffer},{min_lat - lat_buffer},{max_lon + lon_buffer},{max_lat + lat_buffer}"
+        # For WMS 1.3.0 with EPSG:4326, axis order is lat,lon (not lon,lat)!
+        bbox = f"{min_lat - lat_buffer},{min_lon - lon_buffer},{max_lat + lat_buffer},{max_lon + lon_buffer}"
 
         # PDOK aerial imagery WMS service
         wms_url = "https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0"
