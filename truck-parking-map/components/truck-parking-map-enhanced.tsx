@@ -218,6 +218,11 @@ export default function TruckParkingMapEnhanced() {
   const [showOsmVanSpaces, setShowOsmVanSpaces] = useState(false);
   const [showEstimatedSpaces, setShowEstimatedSpaces] = useState(false);
 
+  // Province-based parking space loading
+  const [provinceIndex, setProvinceIndex] = useState<any>(null);
+  const [loadedProvinces, setLoadedProvinces] = useState<Set<string>>(new Set());
+  const [parkingSpaceCache, setParkingSpaceCache] = useState<Map<string, any>>(new Map());
+
   // Location search state
   const [locationSearch, setLocationSearch] = useState("");
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
@@ -370,42 +375,166 @@ export default function TruckParkingMapEnhanced() {
     }
   }, [showMunicipalities, municipalities]);
 
-  // Lazy load OSM parking spaces only when enabled
+  // Load province index on mount
   useEffect(() => {
-    if ((showOsmTruckSpaces || showOsmVanSpaces) && !osmParkingSpaces) {
-      console.log("Loading OSM parking spaces overlay...");
+    fetch("/provinces/province_index.json")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("🗺️ Province index loaded:", Object.keys(data).length, "provinces");
+        setProvinceIndex(data);
+      })
+      .catch((error) => {
+        console.error("❌ Error loading province index:", error);
+      });
+  }, []);
+
+  // Check which provinces intersect with viewport bounds
+  const getVisibleProvinces = useCallback((mapBounds: LatLngBounds): string[] => {
+    if (!provinceIndex) return [];
+
+    const visible: string[] = [];
+    const south = mapBounds.getSouth();
+    const north = mapBounds.getNorth();
+    const west = mapBounds.getWest();
+    const east = mapBounds.getEast();
+
+    for (const [key, province] of Object.entries<any>(provinceIndex)) {
+      const bounds = province.bounds;
+      // Check if province bounds intersect with viewport
+      if (!(bounds.max_lat < south || bounds.min_lat > north ||
+            bounds.max_lon < west || bounds.min_lon > east)) {
+        visible.push(key);
+      }
+    }
+
+    // Always include "other" for unassigned spaces
+    visible.push('other');
+
+    return visible;
+  }, [provinceIndex]);
+
+  // Load parking spaces for visible provinces
+  const loadProvinceParkingSpaces = useCallback(async (provinceKeys: string[]) => {
+    if (!provinceIndex) return;
+
+    // Determine which provinces need to be loaded
+    const toLoad = provinceKeys.filter(key => !loadedProvinces.has(key));
+
+    if (toLoad.length === 0) {
+      // All required provinces already loaded, merge cache
+      const allFeatures: any[] = [];
+      provinceKeys.forEach(key => {
+        const cached = parkingSpaceCache.get(key);
+        if (cached) {
+          allFeatures.push(...cached.features);
+        }
+      });
+
+      setOsmParkingSpaces({
+        type: 'FeatureCollection',
+        features: allFeatures
+      });
+
+      console.log("♻️ Using cached provinces:", provinceKeys.length, "Total features:", allFeatures.length);
+      return;
+    }
+
+    console.log("🔄 Loading provinces:", toLoad.join(', '));
+
+    // Load new provinces via API route (handles gzip decompression)
+    const loadPromises = toLoad.map(async (key) => {
+      const filename = key === 'other'
+        ? 'other_parking_spaces.geojson.gz'
+        : `${key}_parking_spaces.geojson.gz`;
+
+      try {
+        const res = await fetch(`/api/provinces/${filename}`);
+        if (!res.ok) throw new Error(`Failed to load ${key}: ${res.status}`);
+
+        const data = await res.json();
+
+        console.log(`  ✓ ${key}: ${data.features.length} spaces`);
+
+        return { key, data };
+      } catch (error) {
+        console.error(`  ✗ ${key}: ${error}`);
+        return { key, data: null };
+      }
+    });
+
+    const results = await Promise.all(loadPromises);
+
+    // Update cache and loaded set
+    const newCache = new Map(parkingSpaceCache);
+    const newLoaded = new Set(loadedProvinces);
+
+    results.forEach(({ key, data }) => {
+      if (data) {
+        newCache.set(key, data);
+        newLoaded.add(key);
+      }
+    });
+
+    setParkingSpaceCache(newCache);
+    setLoadedProvinces(newLoaded);
+
+    // Merge all required provinces
+    const allFeatures: any[] = [];
+    provinceKeys.forEach(key => {
+      const cached = newCache.get(key);
+      if (cached) {
+        allFeatures.push(...cached.features);
+      }
+    });
+
+    setOsmParkingSpaces({
+      type: 'FeatureCollection',
+      features: allFeatures
+    });
+
+    console.log("✅ Parking spaces updated:", {
+      loadedNewProvinces: toLoad.length,
+      totalProvincesLoaded: newLoaded.size,
+      totalFeatures: allFeatures.length,
+      truck: allFeatures.filter((f: any) => f.properties.vehicle_type === 'truck').length,
+      car: allFeatures.filter((f: any) => f.properties.vehicle_type === 'car').length
+    });
+
+  }, [provinceIndex, loadedProvinces, parkingSpaceCache]);
+
+  // Viewport-based parking space loading
+  useEffect(() => {
+    if (!(showOsmTruckSpaces || showOsmVanSpaces)) {
+      // Parking spaces disabled, clear data
+      setOsmParkingSpaces(null);
+      return;
+    }
+
+    if (!viewport || !provinceIndex) return;
+
+    const visibleProvinces = getVisibleProvinces(viewport);
+
+    if (visibleProvinces.length > 0) {
+      loadProvinceParkingSpaces(visibleProvinces);
+    }
+  }, [showOsmTruckSpaces, showOsmVanSpaces, viewport, provinceIndex, getVisibleProvinces, loadProvinceParkingSpaces]);
+
+  // Lazy load estimated parking spaces only when enabled
+  // NOTE: Loading South Holland OSM parking areas (3,532 parking area boundaries)
+  useEffect(() => {
+    if (showEstimatedSpaces && !estimatedParkingSpaces) {
+      console.log("Loading South Holland OSM parking areas...");
       fetch("/south_holland_osm_parking_spaces.geojson")
         .then((res) => res.json())
         .then((data) => {
-          console.log("OSM parking spaces overlay loaded:", {
+          console.log("South Holland OSM parking areas loaded:", {
             totalFeatures: data.features.length,
-            parkingSpaces: data.features.filter((f: any) => f.properties.feature_type === 'parking_space').length,
-            parkingAreas: data.features.filter((f: any) => f.properties.feature_type === 'parking_area').length,
-          });
-          setOsmParkingSpaces(data);
-        })
-        .catch((error) => {
-          console.error("Error loading OSM parking spaces overlay:", error);
-        });
-    }
-  }, [showOsmTruckSpaces, showOsmVanSpaces, osmParkingSpaces]);
-
-  // Lazy load estimated parking spaces only when enabled
-  // NOTE: Currently loading Maasvlakte pilot (fixed) data
-  useEffect(() => {
-    if (showEstimatedSpaces && !estimatedParkingSpaces) {
-      console.log("Loading Maasvlakte pilot (FIXED) parking spaces...");
-      fetch("/maasvlakte_estimated_parking_pilot.geojson")
-        .then((res) => res.json())
-        .then((data) => {
-          console.log("Maasvlakte pilot spaces loaded (FIXED):", {
-            totalFeatures: data.features.length,
-            note: "Correctly classified as TRUCK spaces with proper capacity"
+            note: "OSM parking area boundaries for all of South Holland"
           });
           setEstimatedParkingSpaces(data);
         })
         .catch((error) => {
-          console.error("Error loading pilot parking spaces:", error);
+          console.error("Error loading OSM parking areas:", error);
         });
     }
   }, [showEstimatedSpaces, estimatedParkingSpaces]);
@@ -796,118 +925,8 @@ export default function TruckParkingMapEnhanced() {
             </div>
           </div>
 
-          {/* NDW Real-Time Data */}
-          <div className="p-4 border-b bg-blue-50/50">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="font-semibold text-sm">NDW Live Data</h3>
-              <button
-                onClick={fetchNdwData}
-                disabled={isRefreshingNdw}
-                className="p-1 hover:bg-blue-100 rounded disabled:opacity-50"
-                title="Refresh NDW data"
-              >
-                <RefreshCw className={`h-4 w-4 ${isRefreshingNdw ? 'animate-spin' : ''}`} />
-              </button>
-            </div>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="ndw_layer"
-                  checked={showNdwLayer}
-                  onCheckedChange={() => setShowNdwLayer(!showNdwLayer)}
-                />
-                <Label
-                  htmlFor="ndw_layer"
-                  className="flex items-center gap-2 cursor-pointer text-sm"
-                >
-                  📡 Real-Time Occupancy
-                  <Badge variant="secondary" className="ml-auto">
-                    {filteredNdwData?.length || 0}
-                  </Badge>
-                </Label>
-              </div>
-              {ndwLastUpdated && (
-                <div className="text-xs text-muted-foreground pl-6">
-                  Updated: {new Date(ndwLastUpdated).toLocaleTimeString()}
-                </div>
-              )}
-              <div className="text-xs space-y-1 pl-6">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500" />
-                  <span>&lt;50% occupied</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-orange-500" />
-                  <span>50-75% occupied</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-red-500" />
-                  <span>&gt;75% or full</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Zenodo Data */}
+          {/* Administrative Boundaries & Parking Spaces */}
           <div className="p-4 border-b">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="font-semibold text-sm">Zenodo Europe-Wide</h3>
-              <button
-                onClick={fetchZenodoData}
-                disabled={isRefreshingZenodo}
-                className="p-1 hover:bg-gray-100 rounded disabled:opacity-50"
-                title="Refresh Zenodo data"
-              >
-                <RefreshCw className={`h-4 w-4 ${isRefreshingZenodo ? 'animate-spin' : ''}`} />
-              </button>
-            </div>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="zenodo_layer"
-                  checked={showZenodoLayer}
-                  onCheckedChange={() => setShowZenodoLayer(!showZenodoLayer)}
-                />
-                <Label
-                  htmlFor="zenodo_layer"
-                  className="flex items-center gap-2 cursor-pointer text-sm"
-                >
-                  🗺️ 19k+ Facilities
-                  <Badge variant="secondary" className="ml-auto">
-                    {filteredZenodoData?.length || 0}
-                  </Badge>
-                </Label>
-              </div>
-              {zenodoLastUpdated && (
-                <div className="text-xs text-muted-foreground pl-6">
-                  Loaded: {new Date(zenodoLastUpdated).toLocaleTimeString()}
-                </div>
-              )}
-              {isRefreshingZenodo && !zenodoData && (
-                <div className="text-xs text-blue-600 pl-6">
-                  📥 Loading 19k+ facilities...
-                </div>
-              )}
-              {!isRefreshingZenodo && !zenodoData && showZenodoLayer && (
-                <div className="text-xs text-amber-600 pl-6">
-                  ⚠️ Click refresh to load 1.6 MB dataset
-                </div>
-              )}
-              {!zenodoData && !showZenodoLayer && (
-                <div className="text-xs text-muted-foreground pl-6">
-                  Enable to load Fraunhofer ISI dataset (EU-27, EFTA, UK)
-                </div>
-              )}
-              {zenodoData && (
-                <div className="text-xs text-green-600 pl-6">
-                  ✓ {zenodoData.length.toLocaleString()} total facilities loaded
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Administrative Boundaries */}
-          <div className="p-4">
             <h3 className="font-semibold mb-3 text-sm">Administrative Boundaries</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
@@ -955,7 +974,15 @@ export default function TruckParkingMapEnhanced() {
               )}
 
               {/* Parking Spaces - 3 Sublayers */}
-              <div className="font-semibold text-sm mb-2 mt-2">🅿️ Parking Spaces</div>
+              <div className="font-semibold text-sm mb-2 mt-2 flex items-center justify-between">
+                <span>🅿️ Parking Spaces</span>
+                <Badge
+                  variant={zoom >= 13 ? "default" : "secondary"}
+                  className="text-xs"
+                >
+                  Zoom: {zoom}
+                </Badge>
+              </div>
 
               {/* OSM Truck Parking Spaces */}
               <div className="flex items-center space-x-2 pl-4">
@@ -968,7 +995,7 @@ export default function TruckParkingMapEnhanced() {
                   htmlFor="osmTruckSpaces"
                   className="flex items-center gap-2 cursor-pointer text-sm"
                 >
-                  🚛 OSM Truck Spaces
+                  🚛 Truck Parking Spaces
                   <Badge variant="outline" className="ml-auto bg-red-100 text-red-800">
                     {osmParkingSpaces?.features?.filter((f: any) => f.properties.vehicle_type === 'truck').length || 0}
                   </Badge>
@@ -986,14 +1013,14 @@ export default function TruckParkingMapEnhanced() {
                   htmlFor="osmVanSpaces"
                   className="flex items-center gap-2 cursor-pointer text-sm"
                 >
-                  🚐 OSM Van/Car Spaces
+                  🚐 Car/Van Parking Spaces
                   <Badge variant="outline" className="ml-auto bg-blue-100 text-blue-800">
                     {osmParkingSpaces?.features?.filter((f: any) => f.properties.vehicle_type === 'car').length || 0}
                   </Badge>
                 </Label>
               </div>
 
-              {/* Estimated Parking Spaces - Maasvlakte Pilot */}
+              {/* South Holland OSM Parking Areas */}
               <div className="flex items-center space-x-2 pl-4 mt-1">
                 <Checkbox
                   id="estimatedSpaces"
@@ -1004,16 +1031,91 @@ export default function TruckParkingMapEnhanced() {
                   htmlFor="estimatedSpaces"
                   className="flex items-center gap-2 cursor-pointer text-sm"
                 >
-                  📐 Estimated Spaces (Maasvlakte Pilot)
-                  <Badge variant="outline" className="ml-auto bg-red-100 text-red-800">
-                    {estimatedParkingSpaces?.features?.length || 0} ✓
+                  📍 OSM Parking Areas (South Holland)
+                  <Badge variant="outline" className="ml-auto bg-blue-100 text-blue-800">
+                    {estimatedParkingSpaces?.features?.filter((f: any) => f.properties.feature_type === 'parking_area').length || 0}
                   </Badge>
                 </Label>
               </div>
+            </div>
+          </div>
 
-              {(showOsmTruckSpaces || showOsmVanSpaces || showEstimatedSpaces) && zoom < 13 && (
-                <div className="text-xs text-muted-foreground pl-10 mt-1">
-                  Zoom in to see spaces (zoom 13+)
+          {/* NDW Real-Time Data - Compact */}
+          <div className="p-3 border-b bg-blue-50/30">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-semibold text-sm">📡 NDW Live</h3>
+              <button
+                onClick={fetchNdwData}
+                disabled={isRefreshingNdw}
+                className="p-1 hover:bg-blue-100 rounded disabled:opacity-50"
+                title="Refresh"
+              >
+                <RefreshCw className={`h-3 w-3 ${isRefreshingNdw ? 'animate-spin' : ''}`} />
+              </button>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="ndw_layer"
+                  checked={showNdwLayer}
+                  onCheckedChange={() => setShowNdwLayer(!showNdwLayer)}
+                />
+                <Label
+                  htmlFor="ndw_layer"
+                  className="flex items-center gap-2 cursor-pointer text-xs"
+                >
+                  Real-Time Occupancy
+                  <Badge variant="secondary" className="ml-auto text-xs">
+                    {filteredNdwData?.length || 0}
+                  </Badge>
+                </Label>
+              </div>
+              {ndwLastUpdated && (
+                <div className="text-[10px] text-muted-foreground pl-6">
+                  {new Date(ndwLastUpdated).toLocaleTimeString()}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Zenodo Data - Compact */}
+          <div className="p-3 border-b">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-semibold text-sm">🗺️ Zenodo EU</h3>
+              <button
+                onClick={fetchZenodoData}
+                disabled={isRefreshingZenodo}
+                className="p-1 hover:bg-gray-100 rounded disabled:opacity-50"
+                title="Refresh"
+              >
+                <RefreshCw className={`h-3 w-3 ${isRefreshingZenodo ? 'animate-spin' : ''}`} />
+              </button>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="zenodo_layer"
+                  checked={showZenodoLayer}
+                  onCheckedChange={() => setShowZenodoLayer(!showZenodoLayer)}
+                />
+                <Label
+                  htmlFor="zenodo_layer"
+                  className="flex items-center gap-2 cursor-pointer text-xs"
+                >
+                  19k+ Facilities
+                  <Badge variant="secondary" className="ml-auto text-xs">
+                    {filteredZenodoData?.length || 0}
+                  </Badge>
+                </Label>
+              </div>
+              {zenodoLastUpdated && (
+                <div className="text-[10px] text-muted-foreground pl-6">
+                  {new Date(zenodoLastUpdated).toLocaleTimeString()}
+                </div>
+              )}
+              {!zenodoData && showZenodoLayer && (
+                <div className="text-[10px] text-amber-600 pl-6">
+                  Click refresh to load
                 </div>
               )}
             </div>
@@ -1921,30 +2023,40 @@ export default function TruckParkingMapEnhanced() {
                 />
               )}
 
-              {/* OSM Truck Parking Spaces - Only show at zoom 13+ */}
-              {showOsmTruckSpaces && osmParkingSpaces && zoom >= 13 && (
-                <GeoJSON
-                  key="osm-truck-spaces"
-                  data={{
-                    type: 'FeatureCollection',
-                    features: osmParkingSpaces.features.filter(
-                      (f: any) => f.properties.feature_type === 'parking_space' && f.properties.vehicle_type === 'truck'
-                    )
-                  }}
+              {/* Truck Parking Space Polygons */}
+              {showOsmTruckSpaces && osmParkingSpaces && (() => {
+                const truckFeatures = osmParkingSpaces.features.filter(
+                  (f: any) => f.properties.vehicle_type === 'truck'
+                );
+                console.log('🚛 Rendering truck parking spaces:', {
+                  total: truckFeatures.length,
+                  sampleCoords: truckFeatures[0]?.geometry?.coordinates?.[0]?.[0],
+                  sampleProps: truckFeatures[0]?.properties
+                });
+                return (
+                  <GeoJSON
+                    key="truck-parking-spaces"
+                    data={{
+                      type: 'FeatureCollection',
+                      features: truckFeatures
+                    } as any}
+                    pane="overlayPane"
                   style={{
                     color: '#ef4444',
-                    weight: 1,
+                    weight: 3,
                     fillColor: '#ef4444',
-                    fillOpacity: 0.4,
-                    opacity: 0.8,
+                    fillOpacity: 0.5,
+                    opacity: 1,
                   }}
                   onEachFeature={(feature, layer) => {
                     const props = feature.properties;
                     const tooltipContent = `
                       <div style="font-size: 12px;">
-                        <strong>${props.facility_name || 'Truck Parking Space'}</strong><br/>
-                        <em style="color: #ef4444;">🚛 ${props.vehicle_label || 'Truck Parking'}</em><br/>
-                        OSM ID: ${props.osm_id}
+                        <strong>🚛 Truck Parking Space</strong><br/>
+                        ${props.parking_area_name || props.facility_name || 'Unknown Area'}<br/>
+                        <em style="color: #666;">Dimensions: ${props.width_m}m × ${props.length_m}m</em><br/>
+                        ${props.rotation_angle ? `Rotation: ${props.rotation_angle}°<br/>` : ''}
+                        ${props.estimated ? '<em style="color: #999;">Estimated from satellite</em>' : ''}
                       </div>
                     `;
                     layer.bindTooltip(tooltipContent, {
@@ -1953,32 +2065,35 @@ export default function TruckParkingMapEnhanced() {
                     });
                   }}
                 />
-              )}
+                );
+              })()}
 
-              {/* OSM Van/Car Parking Spaces - Only show at zoom 13+ */}
-              {showOsmVanSpaces && osmParkingSpaces && zoom >= 13 && (
+              {/* Car/Van Parking Space Polygons */}
+              {showOsmVanSpaces && osmParkingSpaces && (
                 <GeoJSON
-                  key="osm-van-spaces"
+                  key="car-van-parking-spaces"
                   data={{
                     type: 'FeatureCollection',
                     features: osmParkingSpaces.features.filter(
-                      (f: any) => f.properties.feature_type === 'parking_space' && f.properties.vehicle_type !== 'truck'
+                      (f: any) => f.properties.vehicle_type === 'car'
                     )
-                  }}
+                  } as any}
                   style={{
                     color: '#3b82f6',
                     weight: 1,
                     fillColor: '#3b82f6',
-                    fillOpacity: 0.4,
-                    opacity: 0.8,
+                    fillOpacity: 0.25,
+                    opacity: 0.7,
                   }}
                   onEachFeature={(feature, layer) => {
                     const props = feature.properties;
                     const tooltipContent = `
                       <div style="font-size: 12px;">
-                        <strong>${props.facility_name || 'Van/Car Parking Space'}</strong><br/>
-                        <em style="color: #3b82f6;">🚐 ${props.vehicle_label || 'Van/Car Parking'}</em><br/>
-                        OSM ID: ${props.osm_id}
+                        <strong>🚐 Car/Van Parking Space</strong><br/>
+                        ${props.parking_area_name || props.facility_name || 'Unknown Area'}<br/>
+                        <em style="color: #666;">Dimensions: ${props.width_m}m × ${props.length_m}m</em><br/>
+                        ${props.rotation_angle ? `Rotation: ${props.rotation_angle}°<br/>` : ''}
+                        ${props.estimated ? '<em style="color: #999;">Estimated from satellite</em>' : ''}
                       </div>
                     `;
                     layer.bindTooltip(tooltipContent, {
@@ -1989,30 +2104,37 @@ export default function TruckParkingMapEnhanced() {
                 />
               )}
 
-              {/* Estimated Parking Spaces (Maasvlakte Pilot) - Only show at zoom 13+ */}
-              {showEstimatedSpaces && estimatedParkingSpaces && zoom >= 13 && (
+              {/* OSM Parking Area Boundaries */}
+              {showEstimatedSpaces && estimatedParkingSpaces && (
                 <GeoJSON
-                  key="estimated-spaces-pilot"
-                  data={estimatedParkingSpaces}
+                  key="osm-parking-areas"
+                  data={{
+                    type: 'FeatureCollection',
+                    features: estimatedParkingSpaces.features.filter(
+                      (f: any) => f.properties.feature_type === 'parking_area'
+                    )
+                  } as any}
                   style={(feature) => {
-                    const color = feature?.properties?.color || '#ef4444';
+                    // Blue boundaries for parking areas
                     return {
-                      color: color,
+                      color: '#3b82f6',
                       weight: 2,
-                      fillColor: color,
-                      fillOpacity: 0.4,
+                      fillColor: '#3b82f6',
+                      fillOpacity: 0.1,
                       opacity: 0.8,
                     };
                   }}
                   onEachFeature={(feature, layer) => {
                     const props = feature.properties;
-                    const color = props.color || '#ef4444';
                     const tooltipContent = `
                       <div style="font-size: 12px;">
-                        <strong>${props.facility_name || 'Estimated Space'}</strong><br/>
-                        <em style="color: ${color};">🚛 ${props.vehicle_label || 'Truck Parking'} ✓</em><br/>
-                        Space #${props.space_number || 'N/A'}<br/>
-                        ${props.width_m && props.length_m ? `Size: ${props.width_m}m × ${props.length_m}m` : ''}
+                        <strong>${props.name || props.facility_name || 'Parking Area'}</strong><br/>
+                        ${props.operator && props.operator !== 'N/A' ? `Operator: ${props.operator}<br/>` : ''}
+                        ${props.capacity && props.capacity !== 'N/A' ? `Capacity: ${props.capacity}<br/>` : ''}
+                        ${props.capacity_hgv && props.capacity_hgv !== 'N/A' ? `HGV Capacity: ${props.capacity_hgv}<br/>` : ''}
+                        ${props.parking_type && props.parking_type !== 'N/A' ? `Type: ${props.parking_type}<br/>` : ''}
+                        ${props.fee && props.fee !== 'N/A' ? `Fee: ${props.fee}<br/>` : ''}
+                        <em style="color: #3b82f6;">📍 OSM Parking Area</em>
                       </div>
                     `;
                     layer.bindTooltip(tooltipContent, {

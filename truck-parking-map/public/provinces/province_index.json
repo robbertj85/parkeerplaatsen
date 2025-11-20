@@ -1,0 +1,242 @@
+{
+  "groningen": {
+    "name": "Groningen",
+    "bounds": {
+      "min_lat": 53.15,
+      "max_lat": 53.55,
+      "min_lon": 6.2,
+      "max_lon": 7.25
+    },
+    "file": "/provinces/groningen_parking_spaces.geojson.gz",
+    "stats": {
+      "name": "Groningen",
+      "key": "groningen",
+      "total": 10127,
+      "truck": 23,
+      "car": 10104,
+      "size_mb": 4.8253068923950195,
+      "gz_size_mb": 0.26724720001220703,
+      "compression": 94.461550198322
+    }
+  },
+  "friesland": {
+    "name": "Friesland",
+    "bounds": {
+      "min_lat": 52.85,
+      "max_lat": 53.4,
+      "min_lon": 5.35,
+      "max_lon": 6.3
+    },
+    "file": "/provinces/friesland_parking_spaces.geojson.gz",
+    "stats": {
+      "name": "Friesland",
+      "key": "friesland",
+      "total": 33053,
+      "truck": 27,
+      "car": 33026,
+      "size_mb": 15.785070419311523,
+      "gz_size_mb": 0.9060630798339844,
+      "compression": 94.25999976075177
+    }
+  },
+  "drenthe": {
+    "name": "Drenthe",
+    "bounds": {
+      "min_lat": 52.65,
+      "max_lat": 53.15,
+      "min_lon": 6.3,
+      "max_lon": 7.05
+    },
+    "file": "/provinces/drenthe_parking_spaces.geojson.gz",
+    "stats": {
+      "name": "Drenthe",
+      "key": "drenthe",
+      "total": 9993,
+      "truck": 36,
+      "car": 9957,
+      "size_mb": 4.742622375488281,
+      "gz_size_mb": 0.2778959274291992,
+      "compression": 94.14045847576915
+    }
+  },
+  "overijssel": {
+    "name": "Overijssel",
+    "bounds": {
+      "min_lat": 52.2,
+      "max_lat": 52.75,
+      "min_lon": 6.0,
+      "max_lon": 7.0
+    },
+    "file": "/provinces/overijssel_parking_spaces.geojson.gz",
+    "stats": {
+      "name": "Overijssel",
+      "key": "overijssel",
+      "total": 17672,
+      "truck": 51,
+      "car": 17621,
+      "size_mb": 8.490410804748535,
+      "gz_size_mb": 0.49904632568359375,
+      "compression": 94.12223581214133
+    }
+  },
+  "flevoland": {
+    "name": "Flevoland",
+    "bounds": {
+      "min_lat": 52.35,
+      "max_lat": 52.75,
+      "min_lon": 5.25,
+      "max_lon": 5.8
+    },
+    "file": "/provinces/flevoland_parking_spaces.geojson.gz",
+    "stats": {
+      "name": "Flevoland",
+      "key": "flevoland",
+      "total": 2586,
+      "truck": 6,
+      "car": 2580,
+      "size_mb": 1.2355422973632812,
+      "gz_size_mb": 0.06929683685302734,
+      "compression": 94.39138287690265
+    }
+  },
+  "gelderland": {
+    "name": "Gelderland",
+    "bounds": {
+      "min_lat": 51.75,
+      "max_lat": 52.25,
+      "min_lon": 5.35,
+      "max_lon": 6.7
+    },
+    "file": "/provinces/gelderland_parking_spaces.geojson.gz",
+    "stats": {
+      "name": "Gelderland",
+      "key": "gelderland",
+      "total": 20500,
+      "truck": 918,
+      "car": 19582,
+      "size_mb": 9.850976943969727,
+      "gz_size_mb": 0.6268777847290039,
+      "compression": 93.63638968708837
+    }
+  },
+  "utrecht": {
+    "name": "Utrecht",
+    "bounds": {
+      "min_lat": 51.95,
+      "max_lat": 52.25,
+      "min_lon": 4.9,
+      "max_lon": 5.45
+    },
+    "file": "/provinces/utrecht_parking_spaces.geojson.gz",
+    "stats": {
+      "name": "Utrecht",
+      "key": "utrecht",
+      "total": 5365,
+      "truck": 75,
+      "car": 5290,
+      "size_mb": 2.5593767166137695,
+      "gz_size_mb": 0.1435832977294922,
+      "compression": 94.38991154379717
+    }
+  },
+  "noord-holland": {
+    "name": "Noord-Holland",
+    "bounds": {
+      "min_lat": 52.25,
+      "max_lat": 53.0,
+      "min_lon": 4.6,
+      "max_lon": 5.25
+    },
+    "file": "/provinces/noord-holland_parking_spaces.geojson.gz",
+    "stats": {
+      "name": "Noord-Holland",
+      "key": "noord-holland",
+      "total": 55635,
+      "truck": 232,
+      "car": 55403,
+      "size_mb": 27.13025665283203,
+      "gz_size_mb": 1.6129207611083984,
+      "compression": 94.05490046869855
+    }
+  },
+  "zuid-holland": {
+    "name": "Zuid-Holland",
+    "bounds": {
+      "min_lat": 51.75,
+      "max_lat": 52.25,
+      "min_lon": 3.9,
+      "max_lon": 4.9
+    },
+    "file": "/provinces/zuid-holland_parking_spaces.geojson.gz",
+    "stats": {
+      "name": "Zuid-Holland",
+      "key": "zuid-holland",
+      "total": 45934,
+      "truck": 492,
+      "car": 45442,
+      "size_mb": 22.054491996765137,
+      "gz_size_mb": 1.4046211242675781,
+      "compression": 93.63113362813525
+    }
+  },
+  "zeeland": {
+    "name": "Zeeland",
+    "bounds": {
+      "min_lat": 51.28,
+      "max_lat": 51.7,
+      "min_lon": 3.4,
+      "max_lon": 4.25
+    },
+    "file": "/provinces/zeeland_parking_spaces.geojson.gz",
+    "stats": {
+      "name": "Zeeland",
+      "key": "zeeland",
+      "total": 2,
+      "truck": 0,
+      "car": 2,
+      "size_mb": 0.0007009506225585938,
+      "gz_size_mb": 0.00032711029052734375,
+      "compression": 53.333333333333336
+    }
+  },
+  "noord-brabant": {
+    "name": "Noord-Brabant",
+    "bounds": {
+      "min_lat": 51.35,
+      "max_lat": 51.85,
+      "min_lon": 4.5,
+      "max_lon": 5.9
+    },
+    "file": "/provinces/noord-brabant_parking_spaces.geojson.gz",
+    "stats": {
+      "name": "Noord-Brabant",
+      "key": "noord-brabant",
+      "total": 19617,
+      "truck": 114,
+      "car": 19503,
+      "size_mb": 9.451180458068848,
+      "gz_size_mb": 0.5451393127441406,
+      "compression": 94.23205053418768
+    }
+  },
+  "limburg": {
+    "name": "Limburg",
+    "bounds": {
+      "min_lat": 50.75,
+      "max_lat": 51.5,
+      "min_lon": 5.7,
+      "max_lon": 6.25
+    },
+    "file": "/provinces/limburg_parking_spaces.geojson.gz",
+    "stats": {
+      "name": "Limburg",
+      "key": "limburg",
+      "total": 7653,
+      "truck": 40,
+      "car": 7613,
+      "size_mb": 3.634066581726074,
+      "gz_size_mb": 0.21768569946289062,
+      "compression": 94.00985935267327
+    }
+  }
+}
