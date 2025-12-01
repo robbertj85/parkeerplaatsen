@@ -1184,6 +1184,20 @@ export default function TruckParkingMapEnhanced() {
                     </DialogDescription>
                   </DialogHeader>
 
+                  {/* Experimental Notice */}
+                  <div className="bg-amber-50 border border-amber-300 rounded-lg p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="text-amber-600 text-xl">⚠️</div>
+                      <div>
+                        <h4 className="font-semibold text-amber-800 mb-1">Experiment / Proof of Concept</h4>
+                        <p className="text-sm text-amber-700">
+                          This application was built in a few hours as an experimental prototype. It is not production-ready
+                          and should be treated as a demonstration only. Data may be incomplete or inaccurate.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="space-y-6 text-sm">
                     {/* Overview Section */}
                     <section>
@@ -1432,10 +1446,13 @@ export default function TruckParkingMapEnhanced() {
                     </section>
 
                     {/* Footer */}
-                    <section className="pt-4 border-t">
+                    <section className="pt-4 border-t space-y-2">
                       <p className="text-xs text-muted-foreground">
                         This application is designed to support logistics planning, fleet management,
                         and transportation research by providing comprehensive, real-time truck parking information.
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        <strong>License:</strong> MIT License • Open source and free to use, modify, and distribute.
                       </p>
                     </section>
                   </div>
