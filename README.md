@@ -1,18 +1,39 @@
-# Truck Parking Map Netherlands
+# Car Parking Map Netherlands
 
-**This is an experimental proof-of-concept, built in a few hours. It is not production-ready and should be treated as a prototype/demonstration only.**
+**This is an experimental proof-of-concept. It is not production-ready and should be treated as a prototype/demonstration only.**
 
-An interactive web application for visualizing truck parking facilities (verzorgingsplaatsen) across the Netherlands and Europe. The application combines OpenStreetMap data, real-time NDW occupancy information, and European-wide parking data to provide comprehensive information about rest areas, service areas, and dedicated truck parking locations.
+An interactive web application for visualizing car parking across the Netherlands. The application combines multiple open data sources to provide comprehensive information about parking garages, on-street parking (paid and free), P+R facilities, and individual parking spots, including real-time occupancy where available.
 
 ## Features
 
 - Interactive map with multiple base layers (OSM, Satellite, PDOK Aerial, Topographic)
-- Real-time parking occupancy data from NDW
-- ~1,425 facilities from OpenStreetMap Netherlands
-- 19,713 European truck parking facilities from Zenodo/Fraunhofer
-- Satellite-based parking space orientation detection
-- Search and filter by province, municipality, or highway
-- Facility type filtering (truck parking, service areas, rest areas)
+- Real-time parking garage occupancy data from RDW/NPR
+- Parking garages and surface lots
+- On-street parking: paid zones and free parking
+- P+R (Park & Ride) facilities
+- Individual parking spots (where data available, e.g., Amsterdam)
+- Search and filter by province, municipality
+- Parking type filtering
+- City-level parking statistics
+
+## Data Sources
+
+See [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) for comprehensive documentation.
+
+### National Sources
+- **RDW Open Data**: Parking garages, real-time occupancy (~2,500+ facilities)
+- **NPR**: Nationaal Parkeerregister - tariffs, zones, regulations
+- **OpenStreetMap**: ~50,000+ parking locations via Overpass API
+- **NDW**: Real-time traffic and parking data
+
+### Municipal Sources
+- **Amsterdam**: Individual parking spots (parkeervakken) - most detailed
+- **Eindhoven**: Parkeerplaatsen dataset
+- **Rotterdam, Den Haag, Utrecht**: Via RDW/NPR
+
+### Specialized
+- **P+R Facilities**: 50+ locations via RDW
+- **CBS Statistics**: Municipality-level data
 
 ## Tech Stack
 
@@ -25,18 +46,35 @@ An interactive web application for visualizing truck parking facilities (verzorg
 ## Getting Started
 
 ```bash
-cd truck-parking-map
+cd car-parking-map
 npm install
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Data Sources
+## Project Structure
 
-- **OpenStreetMap**: Community-maintained geographic database
-- **NDW**: Nationale Databank Wegverkeersgegevens (Dutch National Traffic Data Bank)
-- **Zenodo**: Fraunhofer Institute truck parking dataset (DOI: 10.5281/zenodo.10231359)
+```
+parkeerplaatsen/
+├── car-parking-map/     # Next.js web application
+├── scripts/             # Python data extraction scripts
+├── data/                # Raw and processed parking data
+├── docs/                # Documentation
+│   └── DATA_SOURCES.md  # Comprehensive data sources guide
+└── CLAUDE.md            # Development guidance
+```
+
+## Parking Types
+
+| Type | Description | Color |
+|------|-------------|-------|
+| Parking Garage | Multi-storey/underground | Blue |
+| Surface Lot | Surface parking lots | Green |
+| Street Paid | On-street paid parking | Orange |
+| Street Free | On-street free parking | Gray |
+| P+R | Park & Ride | Purple |
+| Disabled | Accessible spots | Yellow |
 
 ## License
 

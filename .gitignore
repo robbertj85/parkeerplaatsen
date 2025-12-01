@@ -56,8 +56,15 @@ secrets/
 # claude
 CLAUDE.md
 
-# Large data files (use .gz versions instead)
+# Large data files (exceed GitHub 100MB limit)
 data-archive/*.geojson
 truck-parking-map/public/provinces/*_parking_spaces.geojson
 !truck-parking-map/public/provinces/*.geojson.gz
 truck-parking-map/public/netherlands_osm_individual_parking_spaces_reclassified.geojson
+
+# Large data files (>100MB)
+car-parking-map/public/amsterdam_parking.geojson
+data/osm_parking_nl.geojson
+data/amsterdam_parkeervakken.json
+data/amsterdam_parkeervakken.geojson
+data/osm_parking_nl.json

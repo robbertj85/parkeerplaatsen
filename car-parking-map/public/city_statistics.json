@@ -1,0 +1,1293 @@
+{
+  "10": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "2449": {
+    "total_facilities": 49,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 39,
+      "surface": 9,
+      "street_paid": 1
+    },
+    "with_realtime": 0
+  },
+  "2199": {
+    "total_facilities": 25,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 23,
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "109": {
+    "total_facilities": 7,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 5,
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "2448": {
+    "total_facilities": 202,
+    "total_capacity": 0,
+    "by_type": {
+      "surface": 5,
+      "p_and_r": 77,
+      "garage": 118,
+      "street_paid": 2
+    },
+    "with_realtime": 0
+  },
+  "114": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "2062": {
+    "total_facilities": 48,
+    "total_capacity": 0,
+    "by_type": {
+      "surface": 9,
+      "garage": 32,
+      "street_paid": 4,
+      "p_and_r": 3
+    },
+    "with_realtime": 0
+  },
+  "2453": {
+    "total_facilities": 6,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 3,
+      "surface": 3
+    },
+    "with_realtime": 0
+  },
+  "14": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "2459": {
+    "total_facilities": 20,
+    "total_capacity": 0,
+    "by_type": {
+      "surface": 3,
+      "garage": 16,
+      "street_paid": 1
+    },
+    "with_realtime": 0
+  },
+  "141": {
+    "total_facilities": 10,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 10
+    },
+    "with_realtime": 0
+  },
+  "147": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "3004": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "148": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "1525": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "2001": {
+    "total_facilities": 31,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 30,
+      "street_paid": 1
+    },
+    "with_realtime": 0
+  },
+  "1598": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "160": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2,
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "1621": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "163": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "1651": {
+    "total_facilities": 4,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 4
+    },
+    "with_realtime": 0
+  },
+  "1655": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "1658": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "1674": {
+    "total_facilities": 6,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 6
+    },
+    "with_realtime": 0
+  },
+  "1680": {
+    "total_facilities": 8,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 8
+    },
+    "with_realtime": 0
+  },
+  "1681": {
+    "total_facilities": 5,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 5
+    },
+    "with_realtime": 0
+  },
+  "1684": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "1690": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 3
+    },
+    "with_realtime": 0
+  },
+  "17": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "1706": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "1711": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "1719": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "1721": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "1728": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "1742": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "1842": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "1876": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "1884": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "1891": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "1904": {
+    "total_facilities": 7,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 3,
+      "p_and_r": 4
+    },
+    "with_realtime": 0
+  },
+  "1911": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "1916": {
+    "total_facilities": 6,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2,
+      "p_and_r": 4
+    },
+    "with_realtime": 0
+  },
+  "1921": {
+    "total_facilities": 7,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 7
+    },
+    "with_realtime": 0
+  },
+  "1924": {
+    "total_facilities": 4,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 4
+    },
+    "with_realtime": 0
+  },
+  "2460": {
+    "total_facilities": 13,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 13
+    },
+    "with_realtime": 0
+  },
+  "1926": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "1927": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "193": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "1931": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "1960": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "197": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "2485": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "213": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "226": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "230": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "232": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "236": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "244": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "246": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "3006": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "2468": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "252": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "2557": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "2462": {
+    "total_facilities": 8,
+    "total_capacity": 0,
+    "by_type": {
+      "surface": 7,
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "3": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "307": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "2533": {
+    "total_facilities": 10,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 6,
+      "street_paid": 1,
+      "surface": 3
+    },
+    "with_realtime": 0
+  },
+  "2091": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "308": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "310": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "312": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "317": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "321": {
+    "total_facilities": 4,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 3,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "327": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "335": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "340": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "342": {
+    "total_facilities": 4,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1,
+      "garage": 3
+    },
+    "with_realtime": 0
+  },
+  "345": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "353": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 3
+    },
+    "with_realtime": 0
+  },
+  "356": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 3
+    },
+    "with_realtime": 0
+  },
+  "2093": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "2092": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "376": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "381": {
+    "total_facilities": 6,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 5,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "383": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "388": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "396": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "398": {
+    "total_facilities": 4,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 3
+    },
+    "with_realtime": 0
+  },
+  "2085": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "399": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "400": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2,
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "402": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "405": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "406": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "416": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "420": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "424": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "425": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "439": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "441": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "450": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "484": {
+    "total_facilities": 6,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 5,
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "489": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "5": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "501": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "502": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 3
+    },
+    "with_realtime": 0
+  },
+  "2483": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 3
+    },
+    "with_realtime": 0
+  },
+  "2461": {
+    "total_facilities": 7,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 5,
+      "surface": 1,
+      "street_paid": 1
+    },
+    "with_realtime": 0
+  },
+  "518": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2,
+      "street_paid": 1
+    },
+    "with_realtime": 0
+  },
+  "2487": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "523": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "530": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "532": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "534": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "542": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "546": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "553": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "556": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "569": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "2490": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "58": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "585": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "59": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "590": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "597": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "2479": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "610": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "611": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "612": {
+    "total_facilities": 5,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 5
+    },
+    "with_realtime": 0
+  },
+  "613": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "637": {
+    "total_facilities": 8,
+    "total_capacity": 0,
+    "by_type": {
+      "street_paid": 1,
+      "garage": 7
+    },
+    "with_realtime": 0
+  },
+  "689": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "70": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "733": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "736": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "738": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "74": {
+    "total_facilities": 6,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 5,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "743": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "748": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "753": {
+    "total_facilities": 4,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 2,
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "756": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "762": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "770": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "779": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 3
+    },
+    "with_realtime": 0
+  },
+  "784": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "788": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "2480": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "797": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "856": {
+    "total_facilities": 2,
+    "total_capacity": 0,
+    "by_type": {
+      "surface": 1,
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "861": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "867": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "888": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1,
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "889": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "984": {
+    "total_facilities": 3,
+    "total_capacity": 0,
+    "by_type": {
+      "surface": 2,
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "200": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "street_paid": 1
+    },
+    "with_realtime": 0
+  }
+}
