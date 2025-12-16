@@ -2,6 +2,13 @@
 """
 Merge all parking data sources into a single unified dataset.
 Handles deduplication and data enrichment.
+
+Data sources:
+- RDW/NPR: National parking register (opendata.rdw.nl)
+- OpenStreetMap: Community-maintained parking data
+- Amsterdam: Parkeervakken from data.amsterdam.nl
+- Utrecht: P-route parking from stallingsnet.nl
+- Eindhoven: Parkeerplaatsen from data.eindhoven.nl
 """
 
 import json
@@ -9,6 +16,52 @@ from datetime import datetime, timezone
 from pathlib import Path
 from math import radians, cos, sin, asin, sqrt
 from collections import defaultdict
+
+# Source display names and descriptions
+SOURCE_INFO = {
+    "rdw": {
+        "name": "RDW/NPR",
+        "full_name": "Rijksdienst voor het Wegverkeer / Nationaal Parkeerregister",
+        "url": "https://opendata.rdw.nl",
+        "description": "Official Dutch national parking register with garage data, tariffs, and real-time occupancy",
+    },
+    "osm": {
+        "name": "OpenStreetMap",
+        "full_name": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org",
+        "description": "Community-maintained map data with parking locations worldwide",
+    },
+    "amsterdam": {
+        "name": "Amsterdam",
+        "full_name": "Gemeente Amsterdam Open Data",
+        "url": "https://data.amsterdam.nl",
+        "description": "Individual parking spots (parkeervakken) from Amsterdam municipality",
+    },
+    "utrecht": {
+        "name": "Utrecht",
+        "full_name": "Gemeente Utrecht / Stallingsnet",
+        "url": "https://data.utrecht.nl",
+        "description": "P-route parking garages with real-time availability",
+    },
+    "eindhoven": {
+        "name": "Eindhoven",
+        "full_name": "Gemeente Eindhoven Open Data",
+        "url": "https://data.eindhoven.nl",
+        "description": "Public parking locations from Eindhoven municipality",
+    },
+    "groningen": {
+        "name": "Groningen",
+        "full_name": "Gemeente Groningen Open Data",
+        "url": "https://data.groningen.nl",
+        "description": "Individual parking spots from Groningen municipality",
+    },
+    "arnhem": {
+        "name": "Arnhem",
+        "full_name": "Gemeente Arnhem Open Data",
+        "url": "https://geo.arnhem.nl",
+        "description": "Individual parking spots from Arnhem municipality",
+    },
+}
 
 
 def haversine(lon1: float, lat1: float, lon2: float, lat2: float) -> float:
@@ -197,6 +250,22 @@ def generate_city_statistics(facilities: list) -> dict:
     return {k: {**v, "by_type": dict(v["by_type"])} for k, v in stats.items()}
 
 
+def enrich_source_info(facility: dict) -> dict:
+    """Add source display information to a facility."""
+    source = facility.get("source", "unknown")
+    source_info = SOURCE_INFO.get(source, {
+        "name": source.title(),
+        "full_name": source.title(),
+        "url": "",
+        "description": "",
+    })
+
+    facility["source_name"] = source_info["name"]
+    facility["source_url"] = source_info["url"]
+
+    return facility
+
+
 def main():
     data_dir = Path(__file__).parent.parent / "data"
     output_dir = Path(__file__).parent.parent / "car-parking-map" / "public"
@@ -208,10 +277,16 @@ def main():
     osm_data = load_json_file(data_dir / "osm_parking_nl.json")
     rdw_data = load_json_file(data_dir / "rdw_parking_nl.json")
     amsterdam_data = load_json_file(data_dir / "amsterdam_parkeervakken.json")
+    utrecht_data = load_json_file(data_dir / "utrecht_parking.json")
+    eindhoven_data = load_json_file(data_dir / "eindhoven_parking.json")
+    dutch_cities_data = load_json_file(data_dir / "dutch_cities_parking.json")
 
     print(f"  OSM: {len(osm_data.get('features', []))} facilities")
     print(f"  RDW: {len(rdw_data.get('features', []))} facilities")
     print(f"  Amsterdam: {len(amsterdam_data.get('features', []))} spots")
+    print(f"  Utrecht: {len(utrecht_data.get('features', []))} facilities")
+    print(f"  Eindhoven: {len(eindhoven_data.get('features', []))} facilities")
+    print(f"  Dutch Cities (Groningen, Arnhem): {len(dutch_cities_data.get('features', []))} spots")
 
     # Combine all facilities (excluding Amsterdam individual spots for now - too many)
     all_facilities = []
@@ -219,11 +294,31 @@ def main():
     # Add OSM data
     for f in osm_data.get("features", []):
         f["type"] = normalize_parking_type(f)
+        f = enrich_source_info(f)
         all_facilities.append(f)
 
     # Add RDW data
     for f in rdw_data.get("features", []):
         f["type"] = normalize_parking_type(f)
+        f = enrich_source_info(f)
+        all_facilities.append(f)
+
+    # Add Utrecht data
+    for f in utrecht_data.get("features", []):
+        f["type"] = normalize_parking_type(f)
+        f = enrich_source_info(f)
+        all_facilities.append(f)
+
+    # Add Eindhoven data
+    for f in eindhoven_data.get("features", []):
+        f["type"] = normalize_parking_type(f)
+        f = enrich_source_info(f)
+        all_facilities.append(f)
+
+    # Add Dutch Cities data (Groningen, Arnhem, etc.)
+    for f in dutch_cities_data.get("features", []):
+        f["type"] = normalize_parking_type(f)
+        f = enrich_source_info(f)
         all_facilities.append(f)
 
     print(f"\nTotal before deduplication: {len(all_facilities)}")
@@ -293,7 +388,8 @@ def main():
     # Save merged data
     output = {
         "metadata": {
-            "sources": ["OpenStreetMap", "RDW/NPR"],
+            "sources": list(SOURCE_INFO.keys()),
+            "source_info": SOURCE_INFO,
             "country": "Netherlands",
             "merged_at": datetime.now(timezone.utc).isoformat(),
             "stats": stats

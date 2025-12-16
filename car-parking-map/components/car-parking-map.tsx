@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef, useMemo, useCallback } from "react";
+import React, { useEffect, useState, useRef, useMemo, useCallback } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -9,12 +9,44 @@ import {
   useMapEvents,
   CircleMarker,
   Popup,
+  Circle,
 } from "react-leaflet";
 import L, { LatLngBounds } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import "leaflet.markercluster";
+
+// CSS for pulsing animation (injected via style tag)
+const pulseStyles = `
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px 2px rgba(34, 197, 94, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 16px 4px rgba(34, 197, 94, 0.9);
+  }
+}
+
+.realtime-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+`;
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
@@ -34,6 +66,7 @@ import {
   CircleParking,
   Zap,
   Navigation,
+  Radio,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -68,8 +101,10 @@ interface ParkingFacility {
   source?: string;
   available?: number;
   has_realtime?: boolean;
+  realtime_url?: string;
   rdw_id?: string;
   osm_id?: string;
+  uuid?: string;
   address?: string;
   last_updated?: string;
   fee?: string;
@@ -78,6 +113,11 @@ interface ParkingFacility {
   parking?: string;
   opening_hours?: string;
   website?: string;
+  max_height?: number; // in cm
+  max_duration_minutes?: number;
+  time_regulations?: Array<{ day: string; hours: string[] }>;
+  payment_methods?: string[];
+  usage_type?: string;
 }
 
 // Parking type colors
@@ -120,6 +160,8 @@ const SOURCE_LABELS: Record<string, string> = {
   rdw: "RDW/NPR",
   amsterdam: "Amsterdam",
   rotterdam: "Rotterdam",
+  utrecht: "Utrecht",
+  eindhoven: "Eindhoven",
   elburg: "Elburg",
   zwolle: "Zwolle",
 };
@@ -129,6 +171,8 @@ const SOURCE_COLORS: Record<string, string> = {
   rdw: "#3b82f6", // Blue
   amsterdam: "#f97316", // Orange
   rotterdam: "#06b6d4", // Cyan
+  utrecht: "#14b8a6", // Teal
+  eindhoven: "#f43f5e", // Rose
   elburg: "#8b5cf6", // Purple
   zwolle: "#ec4899", // Pink
 };
@@ -165,43 +209,86 @@ const BASE_LAYERS = {
     category: "standard",
   },
   pdok_brt: {
-    name: "PDOK Topo",
+    name: "PDOK Standaard",
     url: "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0/standaard/EPSG:3857/{z}/{x}/{y}.png",
     attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Kadaster',
     category: "standard",
   },
+  pdok_brt_grijs: {
+    name: "PDOK Grijs",
+    url: "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0/grijs/EPSG:3857/{z}/{x}/{y}.png",
+    attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Kadaster',
+    category: "standard",
+  },
+  pdok_brt_pastel: {
+    name: "PDOK Pastel",
+    url: "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0/pastel/EPSG:3857/{z}/{x}/{y}.png",
+    attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Kadaster',
+    category: "standard",
+  },
+  pdok_brt_water: {
+    name: "PDOK Water",
+    url: "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0/water/EPSG:3857/{z}/{x}/{y}.png",
+    attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Kadaster',
+    category: "standard",
+  },
+  // Satellite / Aerial imagery
   pdok_luchtfoto: {
-    name: "PDOK Luchtfoto",
+    name: "Luchtfoto (Actueel)",
     url: "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg",
     attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Beeldmateriaal.nl',
     category: "satellite",
   },
+  pdok_luchtfoto_2024: {
+    name: "Luchtfoto 2024",
+    url: "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/2024_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg",
+    attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Beeldmateriaal.nl',
+    category: "satellite",
+  },
   pdok_luchtfoto_2023: {
-    name: "PDOK 2023",
+    name: "Luchtfoto 2023",
     url: "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/2023_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg",
     attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Beeldmateriaal.nl',
     category: "satellite",
   },
   pdok_luchtfoto_2022: {
-    name: "PDOK 2022",
+    name: "Luchtfoto 2022",
     url: "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/2022_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg",
     attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Beeldmateriaal.nl',
     category: "satellite",
   },
   pdok_luchtfoto_2021: {
-    name: "PDOK 2021",
+    name: "Luchtfoto 2021",
     url: "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/2021_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg",
     attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Beeldmateriaal.nl',
     category: "satellite",
   },
   pdok_luchtfoto_2020: {
-    name: "PDOK 2020",
+    name: "Luchtfoto 2020",
     url: "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/2020_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg",
     attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Beeldmateriaal.nl',
     category: "satellite",
   },
+  pdok_luchtfoto_2019: {
+    name: "Luchtfoto 2019",
+    url: "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/2019_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg",
+    attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Beeldmateriaal.nl',
+    category: "satellite",
+  },
+  pdok_luchtfoto_2018: {
+    name: "Luchtfoto 2018",
+    url: "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/2018_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg",
+    attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Beeldmateriaal.nl',
+    category: "satellite",
+  },
+  pdok_luchtfoto_infrared: {
+    name: "Luchtfoto Infrarood",
+    url: "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0/Actueel_ortho25ir/EPSG:3857/{z}/{x}/{y}.jpeg",
+    attribution: '&copy; <a href="https://www.pdok.nl">PDOK</a> / Beeldmateriaal.nl',
+    category: "satellite",
+  },
   esri_satellite: {
-    name: "Esri Satellite",
+    name: "Esri World Imagery",
     url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
     attribution: "Tiles &copy; Esri",
     category: "satellite",
@@ -253,7 +340,25 @@ function FlyToLocation({
   return null;
 }
 
+// Real-time glow color (green to indicate live data)
+const REALTIME_GLOW_COLOR = "#22c55e"; // Green-500
+
 export default function CarParkingMap() {
+  // Inject pulse animation styles
+  useEffect(() => {
+    const styleId = "realtime-pulse-styles";
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement("style");
+      style.id = styleId;
+      style.textContent = pulseStyles;
+      document.head.appendChild(style);
+    }
+    return () => {
+      const style = document.getElementById(styleId);
+      if (style) style.remove();
+    };
+  }, []);
+
   // Data state
   const [parkingData, setParkingData] = useState<ParkingFacility[]>([]);
   const [amsterdamData, setAmsterdamData] = useState<any>(null);
@@ -290,13 +395,13 @@ export default function CarParkingMap() {
   const [rotterdamData, setRotterdamData] = useState<any>(null);
   const [elburgData, setElburgData] = useState<any>(null);
   const [zwolleData, setZwolleData] = useState<any>(null);
-  const [layerSelectorOpen, setLayerSelectorOpen] = useState(false);
 
   // Stats
   const [stats, setStats] = useState({
     total: 0,
     by_type: {} as Record<string, number>,
     by_source: {} as Record<string, number>,
+    with_realtime: 0,
   });
 
   // Load parking data
@@ -309,11 +414,17 @@ export default function CarParkingMap() {
         const response = await fetch("/parking_data.json");
         if (response.ok) {
           const data = await response.json();
-          setParkingData(data.features || []);
+          const features = data.features || [];
+          setParkingData(features);
+
+          // Count facilities with real-time data
+          const realtimeCount = features.filter((f: ParkingFacility) => f.has_realtime).length;
+
           setStats({
-            total: data.metadata?.stats?.total || data.features?.length || 0,
+            total: data.metadata?.stats?.total || features.length || 0,
             by_type: data.metadata?.stats?.by_type || {},
             by_source: data.metadata?.stats?.by_source || {},
+            with_realtime: data.metadata?.stats?.with_realtime || realtimeCount,
           });
         }
       } catch (error) {
@@ -428,10 +539,10 @@ export default function CarParkingMap() {
   const amsterdamStyle = useCallback(() => {
     return {
       color: "#f97316",
-      weight: 1,
-      opacity: 0.8,
+      weight: 2,
+      opacity: 1,
       fillColor: "#f97316",
-      fillOpacity: 0.3,
+      fillOpacity: 0.6,
     };
   }, []);
 
@@ -509,6 +620,13 @@ export default function CarParkingMap() {
             {stats.total.toLocaleString()} facilities
           </div>
 
+          {stats.with_realtime > 0 && (
+            <div className="flex items-center gap-2 text-sm text-green-600 mb-2">
+              <Radio className="h-4 w-4 animate-pulse" />
+              <span>{stats.with_realtime} with live data</span>
+            </div>
+          )}
+
           {isLoading && (
             <div className="text-sm text-blue-500">Loading data...</div>
           )}
@@ -521,6 +639,18 @@ export default function CarParkingMap() {
             {Object.entries(PARKING_LABELS).map(([type, label]) => {
               const count = stats.by_type[type] || 0;
               if (count === 0 && type !== "garage") return null;
+
+              // Determine primary sources for each type with display names
+              const typeSources: Record<string, string> = {
+                garage: "RDW, OSM",
+                surface: "OSM, RDW",
+                street_paid: "OSM",
+                street_free: "OSM",
+                p_and_r: "RDW",
+                ev_charging: "OSM",
+                other: "OSM",
+              };
+              const sourceText = typeSources[type] || "OSM";
 
               return (
                 <div key={type} className="flex items-center gap-2">
@@ -537,9 +667,11 @@ export default function CarParkingMap() {
                       className="w-3 h-3 rounded-full"
                       style={{ backgroundColor: PARKING_COLORS[type] }}
                     />
-                    <span className="flex-1">{label}</span>
-                    <Badge variant="secondary" className="text-xs">
-                      {count}
+                    <span className="flex-1">
+                      {label} <span className="text-gray-400 text-xs">({sourceText})</span>
+                    </span>
+                    <Badge variant="secondary" className="text-xs ml-1">
+                      {count.toLocaleString()}
                     </Badge>
                   </Label>
                 </div>
@@ -589,7 +721,7 @@ export default function CarParkingMap() {
                 <Label htmlFor="amsterdam" className="cursor-pointer flex-1">
                   <span className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#f97316" }} />
-                    Amsterdam (261k spots)
+                    Amsterdam <span className="text-gray-400 text-xs">(Amsterdam Open Data, 261k spots)</span>
                   </span>
                 </Label>
                 <button
@@ -618,7 +750,7 @@ export default function CarParkingMap() {
                 <Label htmlFor="rotterdam" className="cursor-pointer flex-1">
                   <span className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#06b6d4" }} />
-                    Rotterdam (20k spots)
+                    Rotterdam <span className="text-gray-400 text-xs">(Rotterdam Open Data, 20k spots)</span>
                   </span>
                 </Label>
                 <button
@@ -647,7 +779,7 @@ export default function CarParkingMap() {
                 <Label htmlFor="elburg" className="cursor-pointer flex-1">
                   <span className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#8b5cf6" }} />
-                    Elburg (298 spots)
+                    Elburg <span className="text-gray-400 text-xs">(Elburg Open Data, 298 spots)</span>
                   </span>
                 </Label>
                 <button
@@ -676,7 +808,7 @@ export default function CarParkingMap() {
                 <Label htmlFor="zwolle" className="cursor-pointer flex-1">
                   <span className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#ec4899" }} />
-                    Zwolle (3.5k spots)
+                    Zwolle <span className="text-gray-400 text-xs">(Zwolle Open Data, 3.5k spots)</span>
                   </span>
                 </Label>
                 <button
@@ -750,25 +882,60 @@ export default function CarParkingMap() {
           <FlyToLocation target={flyToTarget} />
 
           {/* Parking markers */}
-          {visibleFacilities.map((facility) => (
-            <CircleMarker
-              key={facility.id}
-              center={[facility.latitude, facility.longitude]}
-              radius={getMarkerSize(facility.type)}
-              pathOptions={{
-                color: PARKING_COLORS[facility.type] || PARKING_COLORS.other,
-                fillColor:
-                  PARKING_COLORS[facility.type] || PARKING_COLORS.other,
-                fillOpacity: 0.7,
-                weight: 2,
-              }}
-            >
+          {visibleFacilities.map((facility) => {
+            const markerColor = PARKING_COLORS[facility.type] || PARKING_COLORS.other;
+            const markerSize = getMarkerSize(facility.type);
+            const hasRealtime = facility.has_realtime;
+
+            return (
+              <React.Fragment key={facility.id}>
+                {/* Pulsing outer ring for real-time facilities */}
+                {hasRealtime && (
+                  <>
+                    {/* Outer pulsing ring */}
+                    <CircleMarker
+                      center={[facility.latitude, facility.longitude]}
+                      radius={markerSize + 8}
+                      pathOptions={{
+                        color: REALTIME_GLOW_COLOR,
+                        fillColor: REALTIME_GLOW_COLOR,
+                        fillOpacity: 0.15,
+                        weight: 2,
+                        opacity: 0.4,
+                        className: "realtime-pulse-ring",
+                      }}
+                    />
+                    {/* Static glow ring */}
+                    <CircleMarker
+                      center={[facility.latitude, facility.longitude]}
+                      radius={markerSize + 4}
+                      pathOptions={{
+                        color: REALTIME_GLOW_COLOR,
+                        fillColor: REALTIME_GLOW_COLOR,
+                        fillOpacity: 0.25,
+                        weight: 1,
+                        opacity: 0.6,
+                      }}
+                    />
+                  </>
+                )}
+                {/* Main marker */}
+                <CircleMarker
+                  center={[facility.latitude, facility.longitude]}
+                  radius={markerSize}
+                  pathOptions={{
+                    color: hasRealtime ? REALTIME_GLOW_COLOR : markerColor,
+                    fillColor: markerColor,
+                    fillOpacity: 0.7,
+                    weight: hasRealtime ? 3 : 2,
+                  }}
+                >
               <Popup>
                 <div className="min-w-56 max-w-72">
                   <h3 className="font-semibold text-sm">
                     {facility.name || "Unnamed Parking"}
                   </h3>
-                  <div className="text-xs text-gray-500 mt-1">
+                  <div className="text-xs text-gray-500 mt-1 flex flex-wrap gap-1 items-center">
                     <Badge
                       variant="secondary"
                       style={{
@@ -780,17 +947,30 @@ export default function CarParkingMap() {
                       {PARKING_LABELS[facility.type] || facility.type}
                     </Badge>
                     {facility.is_paid && (
-                      <Badge variant="outline" className="ml-1 text-xs">
+                      <Badge variant="outline" className="text-xs">
                         Paid
+                      </Badge>
+                    )}
+                    {facility.has_realtime && (
+                      <Badge
+                        variant="secondary"
+                        className="text-xs animate-pulse"
+                        style={{
+                          backgroundColor: REALTIME_GLOW_COLOR,
+                          color: "white",
+                        }}
+                      >
+                        🔴 Live
                       </Badge>
                     )}
                   </div>
 
                   {/* Location */}
-                  {(facility.municipality || facility.address) && (
+                  {(facility.address || facility.municipality) && (
                     <div className="text-xs mt-2">
                       <MapPin className="inline h-3 w-3 mr-1" />
                       {facility.address || facility.municipality}
+                      {facility.province && !facility.address && `, ${facility.province}`}
                     </div>
                   )}
 
@@ -798,9 +978,24 @@ export default function CarParkingMap() {
                   {facility.capacity?.total && (
                     <div className="text-xs mt-1">
                       <Car className="inline h-3 w-3 mr-1" />
-                      {facility.capacity.total} spaces
-                      {facility.capacity.disabled && ` (${facility.capacity.disabled} disabled)`}
-                      {facility.capacity.ev_charging && ` (${facility.capacity.ev_charging} EV)`}
+                      <span className="font-medium">{facility.capacity.total}</span> spaces
+                      {facility.capacity.disabled !== undefined && facility.capacity.disabled > 0 && (
+                        <span className="ml-2 text-yellow-600">
+                          ({facility.capacity.disabled} disabled)
+                        </span>
+                      )}
+                      {facility.capacity.ev_charging !== undefined && facility.capacity.ev_charging > 0 && (
+                        <span className="ml-2 text-cyan-600">
+                          <Zap className="inline h-3 w-3" /> {facility.capacity.ev_charging} EV
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Max height */}
+                  {facility.max_height && facility.max_height > 0 && (
+                    <div className="text-xs mt-1 text-gray-600">
+                      Max height: {(facility.max_height / 100).toFixed(2)}m
                     </div>
                   )}
 
@@ -853,7 +1048,9 @@ export default function CarParkingMap() {
                 </div>
               </Popup>
             </CircleMarker>
-          ))}
+              </React.Fragment>
+            );
+          })}
 
           {/* Amsterdam GeoJSON layer */}
           {showAmsterdamLayer && amsterdamData && zoom >= 14 && (
@@ -864,18 +1061,20 @@ export default function CarParkingMap() {
               onEachFeature={(feature, layer) => {
                 const props = feature.properties;
                 layer.bindPopup(`
-                  <div class="min-w-32">
-                    <div class="font-semibold text-sm">${
-                      props.straatnaam || "Street Parking"
-                    }</div>
-                    <div class="text-xs mt-1">${props.soort || "Parking"}</div>
-                    ${
-                      props.spot_count
-                        ? `<div class="text-xs mt-1">${props.spot_count} spots</div>`
-                        : ""
-                    }
+                  <div class="min-w-40" style="font-family: system-ui, sans-serif;">
+                    <div style="font-weight: 600; font-size: 14px;">${props.straatnaam || props.name || "Street Parking"}</div>
+                    <div style="font-size: 12px; margin-top: 4px; color: #666;">
+                      ${props.soort || props.type || "Parking"}
+                      ${props.fiscal_type ? ` (${props.fiscal_type})` : ""}
+                    </div>
+                    ${props.spot_count || props.capacity?.total ? `<div style="font-size: 12px; margin-top: 4px;">${props.spot_count || props.capacity?.total} spot(s)</div>` : ""}
+                    ${props.buurtcode ? `<div style="font-size: 11px; margin-top: 4px; color: #888;">Buurt: ${props.buurtcode}</div>` : ""}
+                    <div style="font-size: 11px; margin-top: 8px; padding-top: 6px; border-top: 1px solid #eee; color: #999;">
+                      <div>Source: Amsterdam Open Data</div>
+                      <div style="font-family: monospace; font-size: 10px;">${props.id || ""}</div>
+                    </div>
                   </div>
-                `);
+                `, { maxWidth: 300 });
               }}
             />
           )}
@@ -886,19 +1085,29 @@ export default function CarParkingMap() {
               key="rotterdam-parking"
               data={rotterdamData}
               style={rotterdamStyle}
+              pointToLayer={(feature, latlng) => {
+                return L.circleMarker(latlng, {
+                  radius: 6,
+                  fillColor: "#06b6d4",
+                  color: "#06b6d4",
+                  weight: 1,
+                  opacity: 0.8,
+                  fillOpacity: 0.5,
+                });
+              }}
               onEachFeature={(feature, layer) => {
                 const props = feature.properties;
                 layer.bindPopup(`
-                  <div class="min-w-32">
-                    <div class="font-semibold text-sm">${
-                      props.name || "Parking Spot"
-                    }</div>
-                    <div class="text-xs mt-1">${props.type || "Parking"}</div>
-                    ${
-                      props.capacity?.total
-                        ? `<div class="text-xs mt-1">${props.capacity.total} spots</div>`
-                        : ""
-                    }
+                  <div class="min-w-40">
+                    <div class="font-semibold text-sm">${props.name || "Parking Spot"}</div>
+                    <div class="text-xs mt-1">${PARKING_LABELS[props.type] || props.type || "Parking"}</div>
+                    ${props.capacity?.total ? `<div class="text-xs mt-1">${props.capacity.total} spots</div>` : ""}
+                    ${props.operator ? `<div class="text-xs mt-1 text-gray-500">Operator: ${props.operator}</div>` : ""}
+                    ${props.fee ? `<div class="text-xs mt-1">${props.fee === 'yes' ? 'Paid' : props.fee === 'no' ? 'Free' : props.fee}</div>` : ""}
+                    <div class="text-xs mt-2 text-gray-400 border-t pt-1">
+                      <div>Source: Rotterdam / OSM</div>
+                      <div class="font-mono text-[10px]">${props.id || props.osm_id || ''}</div>
+                    </div>
                   </div>
                 `);
               }}
@@ -911,19 +1120,28 @@ export default function CarParkingMap() {
               key="elburg-parking"
               data={elburgData}
               style={elburgStyle}
+              pointToLayer={(feature, latlng) => {
+                return L.circleMarker(latlng, {
+                  radius: 6,
+                  fillColor: "#8b5cf6",
+                  color: "#8b5cf6",
+                  weight: 1,
+                  opacity: 0.8,
+                  fillOpacity: 0.5,
+                });
+              }}
               onEachFeature={(feature, layer) => {
                 const props = feature.properties;
                 layer.bindPopup(`
-                  <div class="min-w-32">
-                    <div class="font-semibold text-sm">${
-                      props.name || "Parking Spot"
-                    }</div>
-                    <div class="text-xs mt-1">${props.type || "Parking"}</div>
-                    ${
-                      props.capacity?.total
-                        ? `<div class="text-xs mt-1">${props.capacity.total} spots</div>`
-                        : ""
-                    }
+                  <div class="min-w-40">
+                    <div class="font-semibold text-sm">${props.name || "Parking Spot"}</div>
+                    <div class="text-xs mt-1">${PARKING_LABELS[props.type] || props.type || "Parking"}</div>
+                    ${props.capacity?.total ? `<div class="text-xs mt-1">${props.capacity.total} spots</div>` : ""}
+                    ${props.operator ? `<div class="text-xs mt-1 text-gray-500">Operator: ${props.operator}</div>` : ""}
+                    <div class="text-xs mt-2 text-gray-400 border-t pt-1">
+                      <div>Source: Elburg</div>
+                      <div class="font-mono text-[10px]">${props.id || ''}</div>
+                    </div>
                   </div>
                 `);
               }}
@@ -936,19 +1154,28 @@ export default function CarParkingMap() {
               key="zwolle-parking"
               data={zwolleData}
               style={zwolleStyle}
+              pointToLayer={(feature, latlng) => {
+                return L.circleMarker(latlng, {
+                  radius: 6,
+                  fillColor: "#ec4899",
+                  color: "#ec4899",
+                  weight: 1,
+                  opacity: 0.8,
+                  fillOpacity: 0.5,
+                });
+              }}
               onEachFeature={(feature, layer) => {
                 const props = feature.properties;
                 layer.bindPopup(`
-                  <div class="min-w-32">
-                    <div class="font-semibold text-sm">${
-                      props.name || "Parking Spot"
-                    }</div>
-                    <div class="text-xs mt-1">${props.type || "Parking"}</div>
-                    ${
-                      props.capacity?.total
-                        ? `<div class="text-xs mt-1">${props.capacity.total} spots</div>`
-                        : ""
-                    }
+                  <div class="min-w-40">
+                    <div class="font-semibold text-sm">${props.name || "Parking Spot"}</div>
+                    <div class="text-xs mt-1">${PARKING_LABELS[props.type] || props.type || "Parking"}</div>
+                    ${props.capacity?.total ? `<div class="text-xs mt-1">${props.capacity.total} spots</div>` : ""}
+                    ${props.operator ? `<div class="text-xs mt-1 text-gray-500">Operator: ${props.operator}</div>` : ""}
+                    <div class="text-xs mt-2 text-gray-400 border-t pt-1">
+                      <div>Source: Zwolle</div>
+                      <div class="font-mono text-[10px]">${props.id || ''}</div>
+                    </div>
                   </div>
                 `);
               }}
@@ -961,72 +1188,35 @@ export default function CarParkingMap() {
           Zoom: {zoom}
         </div>
 
-        {/* Layer selector control */}
-        <div className="absolute top-4 right-4 z-20">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setLayerSelectorOpen(!layerSelectorOpen)}
-            className="bg-white dark:bg-gray-800 shadow-md"
-          >
-            <Layers className="h-4 w-4 mr-2" />
-            {BASE_LAYERS[baseLayer as keyof typeof BASE_LAYERS].name}
-          </Button>
-
-          {layerSelectorOpen && (
-            <Card className="absolute top-10 right-0 p-3 w-64 shadow-lg bg-white dark:bg-gray-800">
-              <div className="flex justify-between items-center mb-3">
-                <h4 className="text-sm font-medium">Base Map</h4>
-                <button onClick={() => setLayerSelectorOpen(false)}>
-                  <X className="h-4 w-4 text-gray-400 hover:text-gray-600" />
-                </button>
-              </div>
-
-              {/* Standard Maps */}
-              <div className="mb-3">
-                <div className="text-xs text-gray-500 mb-2">Standard</div>
-                <div className="grid grid-cols-2 gap-1">
-                  {Object.entries(BASE_LAYERS)
-                    .filter(([, layer]) => layer.category === "standard")
-                    .map(([key, layer]) => (
-                      <Button
-                        key={key}
-                        variant={baseLayer === key ? "default" : "ghost"}
-                        size="sm"
-                        onClick={() => {
-                          setBaseLayer(key);
-                        }}
-                        className="text-xs justify-start h-8"
-                      >
-                        {layer.name}
-                      </Button>
-                    ))}
-                </div>
-              </div>
-
-              {/* Satellite Maps */}
-              <div>
-                <div className="text-xs text-gray-500 mb-2">Satellite / Aerial</div>
-                <div className="grid grid-cols-2 gap-1">
-                  {Object.entries(BASE_LAYERS)
-                    .filter(([, layer]) => layer.category === "satellite")
-                    .map(([key, layer]) => (
-                      <Button
-                        key={key}
-                        variant={baseLayer === key ? "default" : "ghost"}
-                        size="sm"
-                        onClick={() => {
-                          setBaseLayer(key);
-                        }}
-                        className="text-xs justify-start h-8"
-                      >
-                        {layer.name}
-                      </Button>
-                    ))}
-                </div>
-              </div>
-            </Card>
-          )}
+        {/* Layer selector dropdown */}
+        <div className="absolute top-4 right-4 z-[1000]">
+          <div className="flex items-center gap-2 bg-white dark:bg-gray-800 rounded-lg shadow-md px-3 py-2">
+            <Layers className="h-4 w-4 text-gray-500 flex-shrink-0" />
+            <select
+              value={baseLayer}
+              onChange={(e) => setBaseLayer(e.target.value)}
+              className="bg-transparent text-sm font-medium cursor-pointer outline-none min-w-[180px] dark:text-white"
+            >
+              <optgroup label="Standard Maps">
+                {Object.entries(BASE_LAYERS)
+                  .filter(([, layer]) => layer.category === "standard")
+                  .map(([key, layer]) => (
+                    <option key={key} value={key}>
+                      {layer.name}
+                    </option>
+                  ))}
+              </optgroup>
+              <optgroup label="Satellite / Aerial">
+                {Object.entries(BASE_LAYERS)
+                  .filter(([, layer]) => layer.category === "satellite")
+                  .map(([key, layer]) => (
+                    <option key={key} value={key}>
+                      {layer.name}
+                    </option>
+                  ))}
+              </optgroup>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -1054,21 +1244,43 @@ export default function CarParkingMap() {
             </button>
           </div>
           <div className="mt-3 text-sm space-y-1">
-            {selectedFacility.municipality && (
+            {(selectedFacility.address || selectedFacility.municipality) && (
               <div>
                 <MapPin className="inline h-4 w-4 mr-1" />
-                {selectedFacility.municipality}
+                {selectedFacility.address || selectedFacility.municipality}
               </div>
             )}
             {selectedFacility.capacity?.total && (
               <div>
                 <Car className="inline h-4 w-4 mr-1" />
-                {selectedFacility.capacity.total} parking spaces
+                <span className="font-medium">{selectedFacility.capacity.total}</span> parking spaces
+                {selectedFacility.capacity.ev_charging !== undefined && selectedFacility.capacity.ev_charging > 0 && (
+                  <span className="ml-2 text-cyan-600">
+                    <Zap className="inline h-4 w-4" /> {selectedFacility.capacity.ev_charging} EV
+                  </span>
+                )}
+              </div>
+            )}
+            {selectedFacility.max_height && selectedFacility.max_height > 0 && (
+              <div className="text-gray-500">
+                Max height: {(selectedFacility.max_height / 100).toFixed(2)}m
+              </div>
+            )}
+            {selectedFacility.opening_hours && (
+              <div className="text-gray-500">
+                Hours: {selectedFacility.opening_hours}
               </div>
             )}
             {selectedFacility.operator && (
               <div className="text-gray-500">
                 Operator: {selectedFacility.operator}
+              </div>
+            )}
+            {selectedFacility.website && (
+              <div>
+                <a href={selectedFacility.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline text-sm">
+                  Visit website
+                </a>
               </div>
             )}
           </div>

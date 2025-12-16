@@ -31,6 +31,8 @@ def main():
         ("fetch_osm_parking.py", "OpenStreetMap parking data"),
         ("fetch_rdw_parking.py", "RDW/NPR parking garages"),
         ("fetch_amsterdam_parking.py", "Amsterdam parkeervakken"),
+        ("fetch_utrecht_parking.py", "Utrecht P-route parking"),
+        ("fetch_eindhoven_parking.py", "Eindhoven parkeerplaatsen"),
         ("merge_parking_data.py", "Merge all data sources"),
     ]
 

@@ -1,558 +1,55 @@
 {
-  "10": {
-    "total_facilities": 3,
-    "total_capacity": 0,
+  "Unknown": {
+    "total_facilities": 92935,
+    "total_capacity": 513069,
     "by_type": {
-      "garage": 1,
-      "p_and_r": 2
+      "surface": 55212,
+      "street_free": 797,
+      "garage": 1384,
+      "street_paid": 35487,
+      "p_and_r": 55
     },
     "with_realtime": 0
   },
-  "2449": {
-    "total_facilities": 49,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 39,
-      "surface": 9,
-      "street_paid": 1
-    },
-    "with_realtime": 0
-  },
-  "2199": {
-    "total_facilities": 25,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 23,
-      "garage": 2
-    },
-    "with_realtime": 0
-  },
-  "109": {
-    "total_facilities": 7,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 5,
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "2448": {
+  "Q-Park Nederland BV": {
     "total_facilities": 202,
-    "total_capacity": 0,
+    "total_capacity": 30248,
     "by_type": {
-      "surface": 5,
-      "p_and_r": 77,
-      "garage": 118,
+      "garage": 119,
+      "surface": 8,
+      "p_and_r": 73,
       "street_paid": 2
     },
     "with_realtime": 0
   },
-  "114": {
-    "total_facilities": 1,
-    "total_capacity": 0,
+  "Groningen": {
+    "total_facilities": 2609,
+    "total_capacity": 1336,
     "by_type": {
-      "surface": 1
+      "garage": 3,
+      "surface": 10,
+      "street_paid": 2456,
+      "disabled": 52,
+      "parking_space": 38,
+      "loading_zone": 34,
+      "ev_charging": 16
     },
-    "with_realtime": 0
+    "with_realtime": 1
   },
-  "2062": {
+  "P1": {
     "total_facilities": 48,
-    "total_capacity": 0,
+    "total_capacity": 15994,
     "by_type": {
-      "surface": 9,
       "garage": 32,
+      "surface": 9,
       "street_paid": 4,
       "p_and_r": 3
     },
     "with_realtime": 0
   },
-  "2453": {
-    "total_facilities": 6,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 3,
-      "surface": 3
-    },
-    "with_realtime": 0
-  },
-  "14": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "2459": {
-    "total_facilities": 20,
-    "total_capacity": 0,
-    "by_type": {
-      "surface": 3,
-      "garage": 16,
-      "street_paid": 1
-    },
-    "with_realtime": 0
-  },
-  "141": {
+  "GPK-loket - ParkeerService": {
     "total_facilities": 10,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 10
-    },
-    "with_realtime": 0
-  },
-  "147": {
-    "total_facilities": 3,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 2,
-      "p_and_r": 1
-    },
-    "with_realtime": 0
-  },
-  "3004": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "148": {
-    "total_facilities": 3,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 2,
-      "p_and_r": 1
-    },
-    "with_realtime": 0
-  },
-  "1525": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "2001": {
-    "total_facilities": 31,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 30,
-      "street_paid": 1
-    },
-    "with_realtime": 0
-  },
-  "1598": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 2
-    },
-    "with_realtime": 0
-  },
-  "160": {
-    "total_facilities": 3,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 2,
-      "surface": 1
-    },
-    "with_realtime": 0
-  },
-  "1621": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "163": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "1651": {
-    "total_facilities": 4,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 4
-    },
-    "with_realtime": 0
-  },
-  "1655": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "1658": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "1674": {
-    "total_facilities": 6,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 6
-    },
-    "with_realtime": 0
-  },
-  "1680": {
-    "total_facilities": 8,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 8
-    },
-    "with_realtime": 0
-  },
-  "1681": {
-    "total_facilities": 5,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 5
-    },
-    "with_realtime": 0
-  },
-  "1684": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 2
-    },
-    "with_realtime": 0
-  },
-  "1690": {
-    "total_facilities": 3,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 3
-    },
-    "with_realtime": 0
-  },
-  "17": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "1706": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "1711": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "1719": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "1721": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "1728": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "1742": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 2
-    },
-    "with_realtime": 0
-  },
-  "1842": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "1876": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 2
-    },
-    "with_realtime": 0
-  },
-  "1884": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "1891": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "1904": {
-    "total_facilities": 7,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 3,
-      "p_and_r": 4
-    },
-    "with_realtime": 0
-  },
-  "1911": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "1916": {
-    "total_facilities": 6,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 2,
-      "p_and_r": 4
-    },
-    "with_realtime": 0
-  },
-  "1921": {
-    "total_facilities": 7,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 7
-    },
-    "with_realtime": 0
-  },
-  "1924": {
-    "total_facilities": 4,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 4
-    },
-    "with_realtime": 0
-  },
-  "2460": {
-    "total_facilities": 13,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 13
-    },
-    "with_realtime": 0
-  },
-  "1926": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "1927": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "193": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "1931": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "1960": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 2
-    },
-    "with_realtime": 0
-  },
-  "197": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 1
-    },
-    "with_realtime": 0
-  },
-  "2485": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "213": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "226": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1,
-      "p_and_r": 1
-    },
-    "with_realtime": 0
-  },
-  "230": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1,
-      "p_and_r": 1
-    },
-    "with_realtime": 0
-  },
-  "232": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "236": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "244": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "246": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "3006": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 2
-    },
-    "with_realtime": 0
-  },
-  "2468": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "252": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "2557": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "surface": 1
-    },
-    "with_realtime": 0
-  },
-  "2462": {
-    "total_facilities": 8,
-    "total_capacity": 0,
-    "by_type": {
-      "surface": 7,
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "3": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 1
-    },
-    "with_realtime": 0
-  },
-  "307": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "2533": {
-    "total_facilities": 10,
-    "total_capacity": 0,
+    "total_capacity": 2403,
     "by_type": {
       "garage": 6,
       "street_paid": 1,
@@ -560,65 +57,485 @@
     },
     "with_realtime": 0
   },
-  "2091": {
-    "total_facilities": 1,
-    "total_capacity": 0,
+  "Eindhoven": {
+    "total_facilities": 587,
+    "total_capacity": 881,
     "by_type": {
-      "garage": 1
+      "surface": 1,
+      "parking_space": 570,
+      "disabled": 16
     },
     "with_realtime": 0
   },
-  "308": {
-    "total_facilities": 1,
-    "total_capacity": 0,
+  "Delfzijl": {
+    "total_facilities": 3,
+    "total_capacity": 64,
     "by_type": {
-      "garage": 1
+      "surface": 1,
+      "p_and_r": 2
     },
     "with_realtime": 0
   },
-  "310": {
-    "total_facilities": 1,
-    "total_capacity": 0,
+  "Rotterdam": {
+    "total_facilities": 69,
+    "total_capacity": 31102,
     "by_type": {
-      "garage": 1
+      "garage": 55,
+      "surface": 12,
+      "street_paid": 2
+    },
+    "with_realtime": 1
+  },
+  "Nederlandse Spoorwegen": {
+    "total_facilities": 25,
+    "total_capacity": 5430,
+    "by_type": {
+      "p_and_r": 23,
+      "garage": 2
     },
     "with_realtime": 0
   },
-  "312": {
-    "total_facilities": 1,
-    "total_capacity": 0,
+  "Coevorden": {
+    "total_facilities": 7,
+    "total_capacity": 169,
     "by_type": {
-      "p_and_r": 1
+      "surface": 5,
+      "p_and_r": 2
     },
     "with_realtime": 0
   },
-  "317": {
+  "Emmen": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 754,
     "by_type": {
-      "garage": 1
+      "surface": 1
     },
     "with_realtime": 0
   },
-  "321": {
-    "total_facilities": 4,
-    "total_capacity": 0,
+  "Holland Casino": {
+    "total_facilities": 6,
+    "total_capacity": 834,
     "by_type": {
       "garage": 3,
-      "p_and_r": 1
+      "surface": 3
     },
     "with_realtime": 0
   },
-  "327": {
-    "total_facilities": 2,
-    "total_capacity": 0,
+  "Almelo": {
+    "total_facilities": 10,
+    "total_capacity": 1703,
+    "by_type": {
+      "garage": 9,
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Borne": {
+    "total_facilities": 3,
+    "total_capacity": 335,
     "by_type": {
       "garage": 1,
+      "surface": 1,
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "335": {
+  "Provincie Overijssel": {
+    "total_facilities": 1,
+    "total_capacity": 63,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Dalfsen": {
+    "total_facilities": 3,
+    "total_capacity": 203,
+    "by_type": {
+      "surface": 2,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "Sassenheim": {
+    "total_facilities": 2,
+    "total_capacity": 738,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "Den Haag": {
+    "total_facilities": 39,
+    "total_capacity": 5174,
+    "by_type": {
+      "garage": 36,
+      "street_paid": 2,
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "De Goorn": {
+    "total_facilities": 2,
+    "total_capacity": 201,
+    "by_type": {
+      "surface": 2
+    },
+    "with_realtime": 0
+  },
+  "Hardenberg": {
+    "total_facilities": 3,
+    "total_capacity": 988,
+    "by_type": {
+      "garage": 2,
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Bergschenhoek": {
+    "total_facilities": 2,
+    "total_capacity": 304,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "Hellendoorn": {
+    "total_facilities": 1,
+    "total_capacity": 256,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "Uithuizen": {
+    "total_facilities": 4,
+    "total_capacity": 60,
+    "by_type": {
+      "p_and_r": 4
+    },
+    "with_realtime": 0
+  },
+  "Oudenbosch": {
+    "total_facilities": 1,
+    "total_capacity": 30,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Heeze": {
+    "total_facilities": 2,
+    "total_capacity": 32,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "Roosendaal": {
+    "total_facilities": 6,
+    "total_capacity": 1576,
+    "by_type": {
+      "garage": 5,
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Gieten": {
+    "total_facilities": 8,
+    "total_capacity": 126,
+    "by_type": {
+      "surface": 8
+    },
+    "with_realtime": 0
+  },
+  "Exloo": {
+    "total_facilities": 5,
+    "total_capacity": 94,
+    "by_type": {
+      "surface": 5
+    },
+    "with_realtime": 0
+  },
+  "Cuijk": {
+    "total_facilities": 2,
+    "total_capacity": 228,
+    "by_type": {
+      "surface": 1,
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "Zuidwolde": {
+    "total_facilities": 3,
+    "total_capacity": 34,
+    "by_type": {
+      "surface": 3
+    },
+    "with_realtime": 0
+  },
+  "Haren": {
+    "total_facilities": 1,
+    "total_capacity": 0,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 1
+  },
+  "Budel": {
+    "total_facilities": 1,
+    "total_capacity": 36,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Echt": {
+    "total_facilities": 2,
+    "total_capacity": 182,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "Made": {
+    "total_facilities": 1,
+    "total_capacity": 30,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Heesch": {
+    "total_facilities": 1,
+    "total_capacity": 64,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Bladel": {
+    "total_facilities": 1,
+    "total_capacity": 18,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Rijssen": {
+    "total_facilities": 2,
+    "total_capacity": 340,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "Midden-Delfland": {
+    "total_facilities": 1,
+    "total_capacity": 30,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Hengelo": {
+    "total_facilities": 2,
+    "total_capacity": 53,
+    "by_type": {
+      "surface": 2
+    },
+    "with_realtime": 0
+  },
+  "Roelofarendsveen": {
+    "total_facilities": 1,
+    "total_capacity": 20,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Damwoude": {
+    "total_facilities": 2,
+    "total_capacity": 60,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "Maarssen": {
+    "total_facilities": 7,
+    "total_capacity": 754,
+    "by_type": {
+      "surface": 3,
+      "p_and_r": 4
+    },
+    "with_realtime": 0
+  },
+  "Anna Paulowna": {
+    "total_facilities": 2,
+    "total_capacity": 150,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "Leidschendam": {
+    "total_facilities": 6,
+    "total_capacity": 889,
+    "by_type": {
+      "garage": 2,
+      "p_and_r": 4
+    },
+    "with_realtime": 0
+  },
+  "De Fryske Marren": {
+    "total_facilities": 7,
+    "total_capacity": 448,
+    "by_type": {
+      "surface": 7
+    },
+    "with_realtime": 0
+  },
+  "Middelharnis": {
+    "total_facilities": 4,
+    "total_capacity": 186,
+    "by_type": {
+      "surface": 4
+    },
+    "with_realtime": 0
+  },
+  "Tilburg": {
+    "total_facilities": 13,
+    "total_capacity": 3857,
+    "by_type": {
+      "garage": 13
+    },
+    "with_realtime": 0
+  },
+  "Pijnacker": {
+    "total_facilities": 2,
+    "total_capacity": 182,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "Bleskensgraaf": {
+    "total_facilities": 1,
+    "total_capacity": 100,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Zwolle": {
+    "total_facilities": 1,
+    "total_capacity": 323,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 1
+  },
+  "Stolwijk": {
+    "total_facilities": 1,
+    "total_capacity": 12,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "West Betuwe": {
+    "total_facilities": 2,
+    "total_capacity": 510,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "Aalten": {
+    "total_facilities": 1,
+    "total_capacity": 83,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "Arnhem": {
+    "total_facilities": 2693,
+    "total_capacity": 125,
+    "by_type": {
+      "garage": 1,
+      "parking_space": 2692
+    },
+    "with_realtime": 0
+  },
+  "Brummen": {
+    "total_facilities": 2,
+    "total_capacity": 60,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "Duiven": {
+    "total_facilities": 2,
+    "total_capacity": 128,
+    "by_type": {
+      "surface": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "Elburg": {
+    "total_facilities": 2,
+    "total_capacity": 182,
+    "by_type": {
+      "surface": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "Epe": {
+    "total_facilities": 1,
+    "total_capacity": 39,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Geldermalsen": {
+    "total_facilities": 2,
+    "total_capacity": 519,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "Hattem": {
+    "total_facilities": 1,
+    "total_capacity": 59,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Heerde": {
+    "total_facilities": 1,
+    "total_capacity": 115,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "Provincie Gelderland": {
+    "total_facilities": 2,
+    "total_capacity": 187,
+    "by_type": {
+      "surface": 2
+    },
+    "with_realtime": 0
+  },
+  "Aberdeen Asset Management": {
     "total_facilities": 1,
     "total_capacity": 0,
     "by_type": {
@@ -626,403 +543,479 @@
     },
     "with_realtime": 0
   },
-  "340": {
+  "Malden": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 72,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Nijmegen": {
+    "total_facilities": 1,
+    "total_capacity": 150,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Parking + Protection": {
+    "total_facilities": 8,
+    "total_capacity": 1595,
+    "by_type": {
+      "surface": 7,
+      "garage": 1
+    },
+    "with_realtime": 0
+  },
+  "Appingedam": {
+    "total_facilities": 1,
+    "total_capacity": 22,
     "by_type": {
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "342": {
+  "Amersfoort": {
+    "total_facilities": 2,
+    "total_capacity": 1154,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 1
+  },
+  "Baarn": {
+    "total_facilities": 1,
+    "total_capacity": 52,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Bilthoven": {
+    "total_facilities": 1,
+    "total_capacity": 63,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Odijk": {
+    "total_facilities": 1,
+    "total_capacity": 30,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "Eemnes": {
+    "total_facilities": 1,
+    "total_capacity": 30,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Houten": {
     "total_facilities": 4,
-    "total_capacity": 0,
+    "total_capacity": 1125,
+    "by_type": {
+      "surface": 1,
+      "garage": 2,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "Leusden": {
+    "total_facilities": 2,
+    "total_capacity": 306,
+    "by_type": {
+      "surface": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "Montfoort": {
+    "total_facilities": 1,
+    "total_capacity": 27,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Rhenen": {
+    "total_facilities": 1,
+    "total_capacity": 127,
+    "by_type": {
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "Soest": {
+    "total_facilities": 4,
+    "total_capacity": 297,
     "by_type": {
       "p_and_r": 1,
-      "garage": 3
+      "garage": 2,
+      "surface": 1
     },
     "with_realtime": 0
   },
-  "345": {
+  "Veenendaal": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 575,
     "by_type": {
       "garage": 2
     },
     "with_realtime": 0
   },
-  "353": {
+  "IJsselstein": {
     "total_facilities": 3,
-    "total_capacity": 0,
+    "total_capacity": 314,
     "by_type": {
-      "garage": 3
-    },
-    "with_realtime": 0
-  },
-  "356": {
-    "total_facilities": 3,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 3
-    },
-    "with_realtime": 0
-  },
-  "2093": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "2092": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
+      "surface": 1,
       "garage": 2
     },
     "with_realtime": 0
   },
-  "376": {
-    "total_facilities": 1,
-    "total_capacity": 0,
+  "Nieuwegein": {
+    "total_facilities": 3,
+    "total_capacity": 1900,
     "by_type": {
-      "garage": 1
+      "garage": 3
     },
     "with_realtime": 0
   },
-  "381": {
+  "Amsterdam": {
+    "total_facilities": 3,
+    "total_capacity": 1092,
+    "by_type": {
+      "garage": 3
+    },
+    "with_realtime": 0
+  },
+  "Blaricum": {
+    "total_facilities": 1,
+    "total_capacity": 21,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Bussum": {
     "total_facilities": 6,
-    "total_capacity": 0,
+    "total_capacity": 905,
     "by_type": {
       "garage": 5,
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "383": {
+  "Castricum": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 183,
     "by_type": {
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "388": {
+  "Enkhuizen": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 375,
     "by_type": {
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "396": {
+  "Heemskerk": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 146,
     "by_type": {
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "398": {
+  "Heerhugowaard": {
     "total_facilities": 4,
-    "total_capacity": 0,
+    "total_capacity": 656,
     "by_type": {
-      "garage": 1,
+      "surface": 1,
       "p_and_r": 3
     },
     "with_realtime": 0
   },
-  "2085": {
+  "Velsen-Noord": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 186,
     "by_type": {
       "garage": 1
     },
     "with_realtime": 0
   },
-  "399": {
+  "Heiloo": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 234,
     "by_type": {
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "400": {
+  "Den Helder": {
     "total_facilities": 3,
-    "total_capacity": 0,
+    "total_capacity": 392,
     "by_type": {
       "p_and_r": 2,
       "garage": 1
     },
     "with_realtime": 0
   },
-  "402": {
+  "Hilversum": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 764,
     "by_type": {
       "garage": 2
     },
     "with_realtime": 0
   },
-  "405": {
+  "Hoorn": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 120,
     "by_type": {
       "garage": 1
     },
     "with_realtime": 0
   },
-  "406": {
+  "Huizen": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 21,
     "by_type": {
-      "garage": 1
+      "surface": 1
     },
     "with_realtime": 0
   },
-  "416": {
+  "Zuid-Scharwoude": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 10,
     "by_type": {
-      "garage": 1
+      "surface": 1
     },
     "with_realtime": 0
   },
-  "420": {
+  "Wognum": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 42,
     "by_type": {
-      "garage": 2
+      "surface": 2
     },
     "with_realtime": 0
   },
-  "424": {
+  "Muiden": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 145,
     "by_type": {
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "425": {
+  "Naarden": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 60,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Purmerend": {
+    "total_facilities": 1,
+    "total_capacity": 200,
     "by_type": {
       "garage": 1
     },
     "with_realtime": 0
   },
-  "439": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "441": {
+  "Schagen": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 220,
     "by_type": {
       "p_and_r": 2
     },
     "with_realtime": 0
   },
-  "450": {
+  "Uitgeest": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 145,
     "by_type": {
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "484": {
+  "Alphen aan den Rijn": {
     "total_facilities": 6,
-    "total_capacity": 0,
+    "total_capacity": 1366,
     "by_type": {
-      "garage": 5,
+      "garage": 3,
+      "surface": 3
+    },
+    "with_realtime": 0
+  },
+  "Barendrecht": {
+    "total_facilities": 2,
+    "total_capacity": 425,
+    "by_type": {
+      "surface": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "Bedum": {
+    "total_facilities": 2,
+    "total_capacity": 48,
+    "by_type": {
+      "surface": 1,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "Brielle": {
+    "total_facilities": 1,
+    "total_capacity": 23,
+    "by_type": {
       "surface": 1
     },
     "with_realtime": 0
   },
-  "489": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1,
-      "p_and_r": 1
-    },
-    "with_realtime": 0
-  },
-  "5": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1,
-      "p_and_r": 1
-    },
-    "with_realtime": 0
-  },
-  "501": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "502": {
+  "Capelle aan den Ijssel": {
     "total_facilities": 3,
-    "total_capacity": 0,
+    "total_capacity": 542,
     "by_type": {
       "p_and_r": 3
     },
     "with_realtime": 0
   },
-  "2483": {
+  "Parking Delft": {
     "total_facilities": 3,
-    "total_capacity": 0,
+    "total_capacity": 1344,
     "by_type": {
       "garage": 3
     },
     "with_realtime": 0
   },
-  "2461": {
-    "total_facilities": 7,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 5,
-      "surface": 1,
-      "street_paid": 1
-    },
-    "with_realtime": 0
-  },
-  "518": {
+  "'s-Gravenhage": {
     "total_facilities": 3,
-    "total_capacity": 0,
+    "total_capacity": 639,
     "by_type": {
       "garage": 2,
       "street_paid": 1
     },
     "with_realtime": 0
   },
-  "2487": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "523": {
+  "Hardinxveld-Giessendam": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 73,
     "by_type": {
-      "garage": 1,
+      "surface": 1,
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "530": {
+  "Hellevoetsluis": {
     "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "532": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "534": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "542": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 1
-    },
-    "with_realtime": 0
-  },
-  "546": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "553": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 2
-    },
-    "with_realtime": 0
-  },
-  "556": {
-    "total_facilities": 2,
-    "total_capacity": 0,
-    "by_type": {
-      "p_and_r": 2
-    },
-    "with_realtime": 0
-  },
-  "569": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "2490": {
-    "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 38,
     "by_type": {
       "surface": 1
     },
     "with_realtime": 0
   },
-  "58": {
-    "total_facilities": 1,
-    "total_capacity": 0,
+  "Bovenkarspel": {
+    "total_facilities": 2,
+    "total_capacity": 155,
     "by_type": {
-      "garage": 1
+      "p_and_r": 2
     },
     "with_realtime": 0
   },
-  "585": {
-    "total_facilities": 1,
-    "total_capacity": 0,
+  "Hillegom": {
+    "total_facilities": 2,
+    "total_capacity": 140,
     "by_type": {
-      "garage": 1
+      "p_and_r": 2
     },
     "with_realtime": 0
   },
-  "59": {
-    "total_facilities": 3,
-    "total_capacity": 0,
+  "Krimpen aan den IJssel": {
+    "total_facilities": 1,
+    "total_capacity": 64,
     "by_type": {
-      "garage": 2,
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "590": {
+  "Leiden": {
+    "total_facilities": 1,
+    "total_capacity": 350,
+    "by_type": {
+      "garage": 1
+    },
+    "with_realtime": 1
+  },
+  "Lisse": {
+    "total_facilities": 2,
+    "total_capacity": 368,
+    "by_type": {
+      "garage": 2
+    },
+    "with_realtime": 0
+  },
+  "Maassluis": {
+    "total_facilities": 2,
+    "total_capacity": 125,
+    "by_type": {
+      "p_and_r": 2
+    },
+    "with_realtime": 0
+  },
+  "Nieuwveen": {
+    "total_facilities": 1,
+    "total_capacity": 5,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Centrum Parking": {
+    "total_facilities": 1,
+    "total_capacity": 250,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Dokkum": {
+    "total_facilities": 1,
+    "total_capacity": 40,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Maasdam": {
+    "total_facilities": 1,
+    "total_capacity": 125,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Buitenpost": {
+    "total_facilities": 3,
+    "total_capacity": 149,
+    "by_type": {
+      "surface": 2,
+      "p_and_r": 1
+    },
+    "with_realtime": 0
+  },
+  "Papendrecht": {
     "total_facilities": 2,
     "total_capacity": 0,
     "by_type": {
@@ -1030,264 +1023,272 @@
     },
     "with_realtime": 0
   },
-  "597": {
+  "Ridderkerk": {
     "total_facilities": 3,
-    "total_capacity": 0,
+    "total_capacity": 341,
     "by_type": {
-      "garage": 1,
+      "surface": 1,
       "p_and_r": 2
     },
     "with_realtime": 0
   },
-  "2479": {
+  "Centrummanagement": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 280,
     "by_type": {
       "garage": 1
     },
     "with_realtime": 0
   },
-  "610": {
+  "Sliedrecht": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 96,
     "by_type": {
       "p_and_r": 2
     },
     "with_realtime": 0
   },
-  "611": {
+  "Numansdorp": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 18,
     "by_type": {
-      "garage": 1
+      "surface": 1
     },
     "with_realtime": 0
   },
-  "612": {
+  "Spijkenisse": {
     "total_facilities": 5,
-    "total_capacity": 0,
+    "total_capacity": 2337,
     "by_type": {
       "garage": 5
     },
     "with_realtime": 0
   },
-  "613": {
+  "Poortugaal": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 212,
     "by_type": {
       "p_and_r": 2
     },
     "with_realtime": 0
   },
-  "637": {
+  "Zoetermeer": {
     "total_facilities": 8,
-    "total_capacity": 0,
+    "total_capacity": 261,
     "by_type": {
       "street_paid": 1,
       "garage": 7
     },
-    "with_realtime": 0
+    "with_realtime": 8
   },
-  "689": {
+  "Hoornaar": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 82,
     "by_type": {
-      "garage": 1
+      "surface": 1
     },
     "with_realtime": 0
   },
-  "70": {
+  "Franeker": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 74,
     "by_type": {
-      "garage": 1,
+      "surface": 1,
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "733": {
+  "Asperen": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 39,
     "by_type": {
-      "garage": 1
+      "surface": 1
     },
     "with_realtime": 0
   },
-  "736": {
+  "Mijdrecht": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 173,
     "by_type": {
-      "garage": 1,
+      "surface": 1,
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "738": {
+  "Wijk en Aalburg": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 40,
     "by_type": {
-      "garage": 1
+      "surface": 1
     },
     "with_realtime": 0
   },
-  "74": {
+  "Heerenveen": {
     "total_facilities": 6,
-    "total_capacity": 0,
+    "total_capacity": 280,
     "by_type": {
-      "garage": 5,
+      "surface": 5,
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "743": {
+  "Asten": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 30,
     "by_type": {
-      "garage": 1
+      "surface": 1
     },
     "with_realtime": 0
   },
-  "748": {
+  "Bergen op Zoom": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 525,
     "by_type": {
       "garage": 2
     },
     "with_realtime": 0
   },
-  "753": {
+  "Best": {
     "total_facilities": 4,
-    "total_capacity": 0,
+    "total_capacity": 696,
     "by_type": {
-      "garage": 2,
+      "surface": 2,
       "p_and_r": 2
     },
     "with_realtime": 0
   },
-  "756": {
+  "Boxmeer": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 68,
     "by_type": {
-      "garage": 1,
+      "surface": 1,
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "762": {
+  "Deurne": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 247,
     "by_type": {
-      "garage": 1,
+      "surface": 1,
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "770": {
+  "Eersel": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 32,
     "by_type": {
-      "garage": 1
+      "surface": 1
     },
     "with_realtime": 0
   },
-  "779": {
+  "Raamsdonkveer": {
     "total_facilities": 3,
-    "total_capacity": 0,
+    "total_capacity": 309,
     "by_type": {
-      "garage": 3
+      "surface": 3
     },
     "with_realtime": 0
   },
-  "784": {
+  "Rijen": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 154,
     "by_type": {
-      "garage": 1,
+      "surface": 1,
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "788": {
+  "Haaren": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 18,
+    "by_type": {
+      "surface": 1
+    },
+    "with_realtime": 0
+  },
+  "Colliers International Netherlands BV": {
+    "total_facilities": 1,
+    "total_capacity": 195,
     "by_type": {
       "garage": 1
     },
     "with_realtime": 0
   },
-  "2480": {
+  "Vlijmen": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 60,
     "by_type": {
-      "garage": 1
+      "surface": 1
     },
     "with_realtime": 0
   },
-  "797": {
-    "total_facilities": 1,
-    "total_capacity": 0,
-    "by_type": {
-      "garage": 1
-    },
-    "with_realtime": 0
-  },
-  "856": {
+  "Uden": {
     "total_facilities": 2,
-    "total_capacity": 0,
+    "total_capacity": 709,
     "by_type": {
       "surface": 1,
       "garage": 1
     },
     "with_realtime": 0
   },
-  "861": {
+  "Veldhoven": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 296,
     "by_type": {
       "garage": 1
     },
     "with_realtime": 0
   },
-  "867": {
+  "Waalwijk": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 358,
     "by_type": {
       "garage": 1
     },
     "with_realtime": 0
   },
-  "888": {
+  "Beek": {
     "total_facilities": 3,
-    "total_capacity": 0,
+    "total_capacity": 172,
     "by_type": {
-      "garage": 1,
+      "surface": 1,
       "p_and_r": 2
     },
     "with_realtime": 0
   },
-  "889": {
+  "Reuver": {
     "total_facilities": 1,
-    "total_capacity": 0,
+    "total_capacity": 70,
     "by_type": {
       "p_and_r": 1
     },
     "with_realtime": 0
   },
-  "984": {
+  "Venray": {
     "total_facilities": 3,
-    "total_capacity": 0,
+    "total_capacity": 727,
     "by_type": {
       "surface": 2,
       "garage": 1
     },
     "with_realtime": 0
   },
-  "200": {
+  "Apeldoorn": {
     "total_facilities": 1,
     "total_capacity": 0,
     "by_type": {
       "street_paid": 1
     },
-    "with_realtime": 0
+    "with_realtime": 1
+  },
+  "Utrecht": {
+    "total_facilities": 12,
+    "total_capacity": 24674,
+    "by_type": {
+      "garage": 12
+    },
+    "with_realtime": 12
   }
 }

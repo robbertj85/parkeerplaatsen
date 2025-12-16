@@ -1,0 +1,1485 @@
+{
+  "metadata": {
+    "source": "RDW Open Data - Index Statisch en Dynamisch (f6v7-gjpa)",
+    "description": "Master index of municipalities/organizations with parking data APIs",
+    "fetched_at": "2025-12-01T20:42:51.123657+00:00"
+  },
+  "organizations": [
+    {
+      "name": "Groningen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://spdp.vid.nl/v1/dynamic/hoogkerk"
+    },
+    {
+      "name": "Haren",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://spdp.vid.nl/v1/dynamic/haren"
+    },
+    {
+      "name": "Almere",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opd.it-t.nl/Data/parkingdata/v1/almere/"
+    },
+    {
+      "name": "Dongeradeel",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Franekeradeel",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Harlingen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Heerenveen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Leeuwarden",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opendata.technolution.nl/opendata/parkingdata/v1"
+    },
+    {
+      "name": "Smallingerland",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Assen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Emmen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Hoogeveen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Meppel",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Almelo",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Borne",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Deventer",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opendata.technolution.nl/opendata/parkingdata/v1"
+    },
+    {
+      "name": "Enschede",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opd.it-t.nl/Data/parkingdata/v1/twente/dynamic/"
+    },
+    {
+      "name": "Haaksbergen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Hardenberg",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Hellendoorn",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Hengelo",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Kampen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Oldenzaal",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Raalte",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Zwolle",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opd.it-t.nl/Data/parkingdata/v1/zwolle/dynamic"
+    },
+    {
+      "name": "Apeldoorn",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opendata.technolution.nl/opendata/parkingdata/v1"
+    },
+    {
+      "name": "Arnhem",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opd.it-t.nl/Data/parkingdata/v1/arnhem/"
+    },
+    {
+      "name": "Barneveld",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Culemborg",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Doesburg",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Doetinchem",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Ede",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Geldermalsen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Harderwijk",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Lochem",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Nijkerk",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Nijmegen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opendata.technolution.nl/opendata/parkingdata/v1"
+    },
+    {
+      "name": "Rheden",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Tiel",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Wageningen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Zaltbommel",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Zevenaar",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Zutphen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Amersfoort",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opd.it-t.nl/Data/parkingdata/v1/amersfoort/dynamic/"
+    },
+    {
+      "name": "Houten",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Utrecht",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Veenendaal",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "IJsselstein",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Zeist",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Nieuwegein",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Alkmaar",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Amstelveen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Amsterdam",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opd.it-t.nl/Data/parkingdata/v1/amsterdam/"
+    },
+    {
+      "name": "Bergen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Beverwijk",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Bloemendaal",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Bussum",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Diemen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Edam-Volendam",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Enkhuizen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Haarlem",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Haarlemmermeer",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Heemstede",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Den Helder",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Hilversum",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Hoorn",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Muiden",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Purmerend",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Schagen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Texel",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Velsen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Weesp",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Zandvoort",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Zijpe (NH)",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Zaanstad",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Alphen aan den Rijn",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Delft",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Dordrecht",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Gorinchem",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Gouda",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Den Haag",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Katwijk",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Leerdam",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Leiden",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opd.it-t.nl/Data/parkingdata/v1/leiden/dynamic/"
+    },
+    {
+      "name": "Lisse",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Noordwijk",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Papendrecht",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Ridderkerk",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Rotterdam",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Rijswijk",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Schiedam",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Spijkenisse",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Vlaardingen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Woerden",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Zoetermeer",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opd.it-t.nl/Data/parkingdata/v1/zoetermeer/dynamic"
+    },
+    {
+      "name": "Zwijndrecht",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Goes",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Hulst",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Middelburg",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Sluis",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Terneuzen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Veere",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opd.it-t.nl/Data/parkingdata/v1/veere/dynamic/"
+    },
+    {
+      "name": "Vlissingen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Bergen op Zoom",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Boxtel",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Breda",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Deurne",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Eindhoven",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Etten-Leur",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Helmond",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "'s-Hertogenbosch",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opd.it-t.nl/Data/parkingdata/v1/denbosch/dynamic"
+    },
+    {
+      "name": "Heusden",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Oisterwijk",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Oosterhout",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opd.it-t.nl/Data/parkingdata/v1/oosterhout/dynamic"
+    },
+    {
+      "name": "Oss",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Tilburg",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opendata.technolution.nl/opendata/parkingdata/v1"
+    },
+    {
+      "name": "Uden",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Valkenswaard",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Veghel",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Veldhoven",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Waalwijk",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Beek",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Heerlen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Kerkrade",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Maastricht",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "https://npropendata.rdw.nl/parkingdata/v2/"
+    },
+    {
+      "name": "Meerssen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "https://npropendata.rdw.nl/parkingdata/v2/"
+    },
+    {
+      "name": "Roermond",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Simpelveld",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Vaals",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Venlo",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Venray",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Voerendaal",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Weert",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Valkenburg aan de Geul",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Lelystad",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Teylingen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Maasgouw",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Roosendaal",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Schouwen-Duiveland",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Cuijk",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Steenwijkerland",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Echt-Susteren",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Gulpen-Wittem",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Rijssen - Holten",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Geldrop-Mierlo",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Westland",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Sittard-Geleen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "http://opd.it-t.nl/Data/parkingdata/v1/sittard-geleen/dynamic/"
+    },
+    {
+      "name": "Oldambt",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Sudwest-Fryslan",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Leidschendam-Voorburg",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "P1",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Nederlandse Spoorwegen",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Q-Park",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": true,
+      "dynamic_data_url": "https://npropendata.rdw.nl/parkingdata/v2/"
+    },
+    {
+      "name": "Interparking",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "UMCG",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Martini-ziekenhuis",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Holland Casino",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "APCOA Parking",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "ParkKing",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "BKS Parking",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Parking + Protection",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "PCH",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "Aberdeen Asset Management",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    },
+    {
+      "name": "ParkeerService",
+      "organization_id": null,
+      "has_static_data": true,
+      "static_data_url": "https://npropendata.rdw.nl/parkingdata/v2",
+      "static_data_standard": "SPDP2.0",
+      "has_dynamic_data": false,
+      "dynamic_data_url": null
+    }
+  ]
+}

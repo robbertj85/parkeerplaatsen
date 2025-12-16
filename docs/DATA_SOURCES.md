@@ -27,14 +27,22 @@ The RDW (Rijksdienst voor het Wegverkeer) provides comprehensive parking data fo
 
 #### Available Datasets
 
-| Dataset | Description | Records | Update Frequency |
-|---------|-------------|---------|------------------|
-| Parking Facilities | All registered parking locations | ~2,500+ | Daily |
-| Current Availability | Real-time occupancy | Live | Real-time |
-| Parking Areas (GEBIED) | Geographic zones | ~1,000+ | Weekly |
-| Parking Addresses | Address information | ~2,500+ | Daily |
-| Parking Access | Entry/exit info | ~2,000+ | Weekly |
-| Tariff Parts | Pricing structure | ~5,000+ | Weekly |
+| Dataset ID | Name | Description | Records | Update Frequency |
+|------------|------|-------------|---------|------------------|
+| adw6-9hsg | Parking Areas (GEBIED) | Basic area info | ~2,500+ | Daily |
+| ygq4-hh5q | PARKEERADRES | Address information | ~3,800 | Daily |
+| b3us-f26s | SPECIFICATIES PARKEERGEBIED | Capacity, EV charging, disabled spots, max height | ~3,100 | Weekly |
+| nsk3-v9n7 | GEOMETRIE GEBIED | WGS84 coordinates for parking areas | ~8,400 | Weekly |
+| figd-gux7 | Opening Hours | 24h access, open all year | ~2,000+ | Weekly |
+| 2uc2-nnv3 | Area Managers | Municipality names, websites | ~500+ | Weekly |
+| 534e-5vdg | Tariff Parts | Pricing structure | ~5,000+ | Weekly |
+| **mz4f-59fw** | **PARKEERGEBIED** | NPR/SPDP 2.0 link with UUID | ~14,200 | Weekly |
+| **ixf8-gtwq** | **TIJDVAK** | Time-based parking regulations (paid hours, max stay) | ~90,000 | Weekly |
+| **qtex-qwd8** | **REGELING GEBIED** | Links areas to regulations (needed for TIJDVAK) | ~21,500 | Weekly |
+| **f6v7-gjpa** | **Index Statisch en Dynamisch** | Master index of real-time data sources per municipality | ~164 | Monthly |
+| **j96a-7nhx** | **BETAALMETHODE VERKOOPPUNT** | Payment methods at parking terminals | ~186 | Weekly |
+
+**Bold** = Newly integrated datasets
 
 #### API Access
 
@@ -47,19 +55,38 @@ curl "https://opendata.rdw.nl/resource/t5pc-eb34.json"
 
 # With filtering
 curl "https://opendata.rdw.nl/resource/t5pc-eb34.json?\$where=gemeentenaam='AMSTERDAM'"
+
+# Get time regulations (TIJDVAK)
+curl "https://opendata.rdw.nl/resource/ixf8-gtwq.json?\$limit=1000"
+
+# Get real-time data index
+curl "https://opendata.rdw.nl/resource/f6v7-gjpa.json"
 ```
 
 #### Key Endpoints
 
 - **Static data**: https://npropendata.rdw.nl/parkingdata/v2
-- **Dynamic data**: Via facility-specific URLs in index
+- **Dynamic data**: Via facility-specific URLs in index (f6v7-gjpa)
 - **Documentation**: https://npropendata.rdw.nl/
+
+#### New Data Fields (from integrated datasets)
+
+| Field | Source Dataset | Description |
+|-------|----------------|-------------|
+| `uuid` | PARKEERGEBIED | SPDP 2.0 unique identifier for cross-referencing |
+| `usage_type` | PARKEERGEBIED | Usage classification code |
+| `time_regulations` | TIJDVAK | When paid parking applies (days, hours) |
+| `max_duration_minutes` | TIJDVAK | Maximum parking duration allowed |
+| `has_realtime` | Index | Whether facility has real-time occupancy data |
+| `realtime_url` | Index | API endpoint for live availability |
+| `payment_methods` | BETAALMETHODE | Accepted payment methods (Maestro, Visa, coins, etc.) |
 
 #### Data Quality Notes
 - Primarily covers commercial parking garages
 - Q-Park has best coverage; P1 and others expanding
-- Real-time data available for ~100+ garages
+- Real-time data available for ~100+ garages (check Index dataset)
 - Capacity data generally reliable
+- TIJDVAK provides detailed time-based regulations for ~90,000 records
 
 ---
 
