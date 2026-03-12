@@ -67,9 +67,17 @@ import {
   Zap,
   Navigation,
   Radio,
+  HelpCircle,
+  Info,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 // Fix Leaflet default icon issue with Next.js
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -154,6 +162,67 @@ const PARKING_ICONS: Record<string, React.ReactNode> = {
   ev_charging: <Zap className="h-4 w-4" />,
 };
 
+// InfoTooltip component for consistent tooltips
+function InfoTooltip({ children, side = "right", className = "" }: { children: React.ReactNode; side?: "top" | "right" | "bottom" | "left"; className?: string }) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button type="button" className={`inline-flex items-center text-gray-400 hover:text-gray-600 transition-colors ${className}`}>
+          <Info className="h-3.5 w-3.5" />
+        </button>
+      </TooltipTrigger>
+      <TooltipContent side={side} className="max-w-72 text-left bg-gray-900 text-gray-100 p-3 text-xs leading-relaxed">
+        {children}
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
+// Tooltip descriptions for parking types
+const PARKING_TYPE_TOOLTIPS: Record<string, { description: string; sources: string }> = {
+  garage: {
+    description: "Multi-storey or underground parking garages, including commercial garages operated by Q-Park, P1, APCOA, etc.",
+    sources: "RDW/NPR (opendata.rdw.nl) for registered garages with capacity data. OpenStreetMap for community-mapped garages.",
+  },
+  surface: {
+    description: "Open-air surface parking lots, typically unpaved or paved areas dedicated to parking.",
+    sources: "OpenStreetMap community contributors. RDW for registered surface lots.",
+  },
+  street_paid: {
+    description: "On-street paid parking zones (betaald parkeren). Requires payment via meter or parking app.",
+    sources: "OpenStreetMap community contributors tagging fee=yes.",
+  },
+  street_free: {
+    description: "On-street parking where no payment is required. May have time restrictions or permit requirements.",
+    sources: "OpenStreetMap community contributors.",
+  },
+  p_and_r: {
+    description: "Park & Ride facilities at transit hubs. Park your car and continue by public transport.",
+    sources: "RDW/NPR national register of P+R facilities.",
+  },
+  ev_charging: {
+    description: "Parking spots with electric vehicle charging stations.",
+    sources: "OpenStreetMap community contributors tagging amenity=charging_station.",
+  },
+  other: {
+    description: "Parking facilities that don't fit standard categories, including motorcycle parking, bicycle parking, etc.",
+    sources: "OpenStreetMap community contributors.",
+  },
+};
+
+// Tooltip descriptions for data sources
+const SOURCE_TOOLTIPS: Record<string, string> = {
+  osm: "OpenStreetMap (OSM) - Community-maintained open geographic database. Data contributed by volunteer mappers worldwide. Updated continuously. Quality varies by area.",
+  rdw: "RDW (Rijksdienst voor het Wegverkeer) / NPR (Nationaal Parkeerregister) - Official Dutch vehicle authority. Provides registered parking facilities, real-time occupancy via SPDP 2.0 standard. Updated via opendata.rdw.nl.",
+  amsterdam: "Amsterdam Open Data (data.amsterdam.nl) - Official municipal dataset of all individual parking spots (parkeervakken) in Amsterdam. Contains 261k+ spots with fiscal type and zone info.",
+  rotterdam: "Rotterdam Open Data - Official municipal dataset of parking facilities and spots in Rotterdam. Contains ~20k spots.",
+  utrecht: "Utrecht municipal parking data. Primarily through RDW/NPR integration.",
+  eindhoven: "Eindhoven Open Data (data.eindhoven.nl) - Official municipal parking dataset.",
+  elburg: "Elburg Open Data - Municipal parking data for the town of Elburg. Contains 298 individual parking spots.",
+  zwolle: "Zwolle Open Data - Municipal parking data for Zwolle. Contains ~3,500 parking spots.",
+  apeldoorn: "Apeldoorn parking data - Combined from RDW SPDP (real-time garage data) and OpenStreetMap. Contains 57 garages with real-time occupancy where available.",
+};
+
 // Data source labels and colors
 const SOURCE_LABELS: Record<string, string> = {
   osm: "OpenStreetMap",
@@ -164,6 +233,7 @@ const SOURCE_LABELS: Record<string, string> = {
   eindhoven: "Eindhoven",
   elburg: "Elburg",
   zwolle: "Zwolle",
+  apeldoorn: "Apeldoorn",
 };
 
 const SOURCE_COLORS: Record<string, string> = {
@@ -175,6 +245,7 @@ const SOURCE_COLORS: Record<string, string> = {
   eindhoven: "#f43f5e", // Rose
   elburg: "#8b5cf6", // Purple
   zwolle: "#ec4899", // Pink
+  apeldoorn: "#84cc16", // Lime
 };
 
 // City center coordinates
@@ -183,6 +254,7 @@ const CITY_LOCATIONS: Record<string, { lat: number; lng: number; zoom: number }>
   rotterdam: { lat: 51.9244, lng: 4.4777, zoom: 14 },
   elburg: { lat: 52.4493, lng: 5.8372, zoom: 15 },
   zwolle: { lat: 52.5168, lng: 6.0830, zoom: 14 },
+  apeldoorn: { lat: 52.2112, lng: 5.9699, zoom: 14 },
 };
 
 // Base map layers
@@ -392,9 +464,11 @@ export default function CarParkingMap() {
   const [showRotterdamLayer, setShowRotterdamLayer] = useState(false);
   const [showElburgLayer, setShowElburgLayer] = useState(false);
   const [showZwolleLayer, setShowZwolleLayer] = useState(false);
+  const [showApeldoornLayer, setShowApeldoornLayer] = useState(false);
   const [rotterdamData, setRotterdamData] = useState<any>(null);
   const [elburgData, setElburgData] = useState<any>(null);
   const [zwolleData, setZwolleData] = useState<any>(null);
+  const [apeldoornData, setApeldoornData] = useState<any>(null);
 
   // Stats
   const [stats, setStats] = useState({
@@ -476,6 +550,16 @@ export default function CarParkingMap() {
         .catch((e) => console.error("Error loading Zwolle data:", e));
     }
   }, [showZwolleLayer, zwolleData]);
+
+  // Load Apeldoorn data when layer is enabled
+  useEffect(() => {
+    if (showApeldoornLayer && !apeldoornData) {
+      fetch("/apeldoorn_parking.geojson")
+        .then((r) => r.json())
+        .then((data) => setApeldoornData(data))
+        .catch((e) => console.error("Error loading Apeldoorn data:", e));
+    }
+  }, [showApeldoornLayer, apeldoornData]);
 
   // Filter facilities
   const filteredData = useMemo(() => {
@@ -579,7 +663,19 @@ export default function CarParkingMap() {
     };
   }, []);
 
+  // GeoJSON style for Apeldoorn layer
+  const apeldoornStyle = useCallback(() => {
+    return {
+      color: "#84cc16",
+      weight: 1,
+      opacity: 0.8,
+      fillColor: "#84cc16",
+      fillOpacity: 0.3,
+    };
+  }, []);
+
   return (
+    <TooltipProvider delayDuration={200}>
     <div className="h-screen w-screen relative flex">
       {/* Left Panel */}
       <div
@@ -591,6 +687,12 @@ export default function CarParkingMap() {
           <div className="flex items-center gap-2 mb-4">
             <ParkingSquare className="h-6 w-6 text-blue-500" />
             <h1 className="text-lg font-semibold">Car Parking NL</h1>
+            <InfoTooltip side="bottom">
+              <p className="font-semibold mb-1">Car Parking NL</p>
+              <p>Interactive map of car parking across the Netherlands. Shows parking garages, surface lots, street parking, P+R facilities, and EV charging spots.</p>
+              <p className="mt-1.5">Data is aggregated from multiple official and community sources: RDW/NPR (national register), OpenStreetMap, and municipal open data portals.</p>
+              <p className="mt-1.5 text-gray-400">Click any marker on the map for details. Use filters below to show/hide parking types.</p>
+            </InfoTooltip>
           </div>
 
           {/* Search */}
@@ -624,6 +726,12 @@ export default function CarParkingMap() {
             <div className="flex items-center gap-2 text-sm text-green-600 mb-2">
               <Radio className="h-4 w-4 animate-pulse" />
               <span>{stats.with_realtime} with live data</span>
+              <InfoTooltip>
+                <p className="font-semibold mb-1">Real-time occupancy data</p>
+                <p>These facilities report live availability via the SPDP 2.0 standard (Standard for Publication of Dynamic Parking Data).</p>
+                <p className="mt-1.5">Markers with a green pulsing ring have real-time data from RDW/NPR. The occupancy numbers update automatically.</p>
+                <p className="mt-1.5 text-gray-400">Source: RDW via opendata.rdw.nl</p>
+              </InfoTooltip>
             </div>
           )}
 
@@ -634,7 +742,14 @@ export default function CarParkingMap() {
 
         {/* Filters */}
         <div className="flex-1 overflow-y-auto p-4">
-          <h3 className="text-sm font-medium mb-3">Parking Types</h3>
+          <div className="flex items-center gap-1 mb-3">
+            <h3 className="text-sm font-medium">Parking Types</h3>
+            <InfoTooltip>
+              <p className="font-semibold mb-1">Parking type filters</p>
+              <p>Toggle visibility of different parking categories on the map. Each type is color-coded. The source abbreviation shows where the data originates.</p>
+              <p className="mt-1.5">Hover over each type for more details about what it includes and its data source.</p>
+            </InfoTooltip>
+          </div>
           <div className="space-y-2">
             {Object.entries(PARKING_LABELS).map(([type, label]) => {
               const count = stats.by_type[type] || 0;
@@ -651,6 +766,7 @@ export default function CarParkingMap() {
                 other: "OSM",
               };
               const sourceText = typeSources[type] || "OSM";
+              const tooltipInfo = PARKING_TYPE_TOOLTIPS[type];
 
               return (
                 <div key={type} className="flex items-center gap-2">
@@ -674,6 +790,13 @@ export default function CarParkingMap() {
                       {count.toLocaleString()}
                     </Badge>
                   </Label>
+                  {tooltipInfo && (
+                    <InfoTooltip>
+                      <p className="font-semibold mb-1">{label}</p>
+                      <p>{tooltipInfo.description}</p>
+                      <p className="mt-1.5 text-gray-400">Sources: {tooltipInfo.sources}</p>
+                    </InfoTooltip>
+                  )}
                 </div>
               );
             })}
@@ -681,7 +804,14 @@ export default function CarParkingMap() {
 
           {/* Data Sources */}
           <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-            <h3 className="text-sm font-medium mb-3">Data Sources</h3>
+            <div className="flex items-center gap-1 mb-3">
+              <h3 className="text-sm font-medium">Data Sources</h3>
+              <InfoTooltip>
+                <p className="font-semibold mb-1">Data origins</p>
+                <p>Each parking facility is tagged with its data source. National sources (RDW, OSM) cover the whole country. Municipal sources provide more detailed local data.</p>
+                <p className="mt-1.5">Hover over each source for details about the data provider and what information it contains.</p>
+              </InfoTooltip>
+            </div>
             <div className="space-y-2">
               {Object.entries(SOURCE_LABELS).map(([source, label]) => {
                 const count = stats.by_source?.[source] || 0;
@@ -693,6 +823,12 @@ export default function CarParkingMap() {
                         style={{ backgroundColor: SOURCE_COLORS[source] }}
                       />
                       <span>{label}</span>
+                      {SOURCE_TOOLTIPS[source] && (
+                        <InfoTooltip>
+                          <p className="font-semibold mb-1">{label}</p>
+                          <p>{SOURCE_TOOLTIPS[source]}</p>
+                        </InfoTooltip>
+                      )}
                     </div>
                     <Badge variant="secondary" className="text-xs">
                       {count.toLocaleString()}
@@ -705,7 +841,15 @@ export default function CarParkingMap() {
 
           {/* City detail layers */}
           <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-            <h3 className="text-sm font-medium mb-3">City Detail Layers</h3>
+            <div className="flex items-center gap-1 mb-3">
+              <h3 className="text-sm font-medium">City Detail Layers</h3>
+              <InfoTooltip>
+                <p className="font-semibold mb-1">Municipal detail layers</p>
+                <p>These layers show individual parking spots from municipal open data portals. They provide much more detail than the national datasets, often including every single parking space.</p>
+                <p className="mt-1.5">Enable a layer to load its data. Zoom to level 14+ to see individual spots. The map will automatically fly to the city when enabled.</p>
+                <p className="mt-1.5 text-gray-400">Each city's data comes from their official open data portal or a combination of RDW + OSM data.</p>
+              </InfoTooltip>
+            </div>
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <Checkbox
@@ -721,9 +865,15 @@ export default function CarParkingMap() {
                 <Label htmlFor="amsterdam" className="cursor-pointer flex-1">
                   <span className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#f97316" }} />
-                    Amsterdam <span className="text-gray-400 text-xs">(Amsterdam Open Data, 261k spots)</span>
+                    Amsterdam <span className="text-gray-400 text-xs">(261k spots)</span>
                   </span>
                 </Label>
+                <InfoTooltip>
+                  <p className="font-semibold mb-1">Amsterdam Parking Spots</p>
+                  <p>261,000+ individual parking spaces (parkeervakken) from Amsterdam's official open data portal.</p>
+                  <p className="mt-1">Includes fiscal type (paid/free/permit), street name, neighborhood code, and zone information.</p>
+                  <p className="mt-1.5 text-gray-400">Source: data.amsterdam.nl - Parkeervakken API</p>
+                </InfoTooltip>
                 <button
                   onClick={() => setFlyToTarget(CITY_LOCATIONS.amsterdam)}
                   className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
@@ -750,9 +900,15 @@ export default function CarParkingMap() {
                 <Label htmlFor="rotterdam" className="cursor-pointer flex-1">
                   <span className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#06b6d4" }} />
-                    Rotterdam <span className="text-gray-400 text-xs">(Rotterdam Open Data, 20k spots)</span>
+                    Rotterdam <span className="text-gray-400 text-xs">(20k spots)</span>
                   </span>
                 </Label>
+                <InfoTooltip>
+                  <p className="font-semibold mb-1">Rotterdam Parking</p>
+                  <p>~20,000 parking facilities and spots from Rotterdam's open data portal.</p>
+                  <p className="mt-1">Includes facility type, capacity, operator, and fee information.</p>
+                  <p className="mt-1.5 text-gray-400">Source: Rotterdam Open Data / OpenStreetMap</p>
+                </InfoTooltip>
                 <button
                   onClick={() => setFlyToTarget(CITY_LOCATIONS.rotterdam)}
                   className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
@@ -779,9 +935,15 @@ export default function CarParkingMap() {
                 <Label htmlFor="elburg" className="cursor-pointer flex-1">
                   <span className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#8b5cf6" }} />
-                    Elburg <span className="text-gray-400 text-xs">(Elburg Open Data, 298 spots)</span>
+                    Elburg <span className="text-gray-400 text-xs">(298 spots)</span>
                   </span>
                 </Label>
+                <InfoTooltip>
+                  <p className="font-semibold mb-1">Elburg Parking</p>
+                  <p>298 individual parking spots from Elburg's municipal open data.</p>
+                  <p className="mt-1">Covers the historic town center and surrounding areas.</p>
+                  <p className="mt-1.5 text-gray-400">Source: Elburg Open Data</p>
+                </InfoTooltip>
                 <button
                   onClick={() => setFlyToTarget(CITY_LOCATIONS.elburg)}
                   className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
@@ -808,9 +970,15 @@ export default function CarParkingMap() {
                 <Label htmlFor="zwolle" className="cursor-pointer flex-1">
                   <span className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#ec4899" }} />
-                    Zwolle <span className="text-gray-400 text-xs">(Zwolle Open Data, 3.5k spots)</span>
+                    Zwolle <span className="text-gray-400 text-xs">(3.5k spots)</span>
                   </span>
                 </Label>
+                <InfoTooltip>
+                  <p className="font-semibold mb-1">Zwolle Parking</p>
+                  <p>~3,500 parking spots from Zwolle's municipal open data.</p>
+                  <p className="mt-1">Includes facility type, capacity, and operator information.</p>
+                  <p className="mt-1.5 text-gray-400">Source: Zwolle Open Data</p>
+                </InfoTooltip>
                 <button
                   onClick={() => setFlyToTarget(CITY_LOCATIONS.zwolle)}
                   className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
@@ -822,8 +990,43 @@ export default function CarParkingMap() {
               {showZwolleLayer && !zwolleData && (
                 <div className="text-xs text-gray-500 ml-5">Loading...</div>
               )}
+
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  id="apeldoorn"
+                  checked={showApeldoornLayer}
+                  onCheckedChange={() => {
+                    if (!showApeldoornLayer) {
+                      setFlyToTarget(CITY_LOCATIONS.apeldoorn);
+                    }
+                    setShowApeldoornLayer(!showApeldoornLayer);
+                  }}
+                />
+                <Label htmlFor="apeldoorn" className="cursor-pointer flex-1">
+                  <span className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#84cc16" }} />
+                    Apeldoorn <span className="text-gray-400 text-xs">(57 garages)</span>
+                  </span>
+                </Label>
+                <InfoTooltip>
+                  <p className="font-semibold mb-1">Apeldoorn Parking</p>
+                  <p>57 parking garages combining RDW SPDP real-time data with OpenStreetMap locations.</p>
+                  <p className="mt-1">Green markers indicate facilities with real-time occupancy data. Visible from zoom level 12+.</p>
+                  <p className="mt-1.5 text-gray-400">Sources: RDW SPDP 2.0 (real-time) + OpenStreetMap</p>
+                </InfoTooltip>
+                <button
+                  onClick={() => setFlyToTarget(CITY_LOCATIONS.apeldoorn)}
+                  className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+                  title="Go to Apeldoorn"
+                >
+                  <Navigation className="h-4 w-4 text-gray-500" />
+                </button>
+              </div>
+              {showApeldoornLayer && !apeldoornData && (
+                <div className="text-xs text-gray-500 ml-5">Loading...</div>
+              )}
             </div>
-            {(showAmsterdamLayer || showRotterdamLayer || showElburgLayer || showZwolleLayer) && zoom < 14 && (
+            {(showAmsterdamLayer || showRotterdamLayer || showElburgLayer || showZwolleLayer || showApeldoornLayer) && zoom < 14 && (
               <div className="text-xs text-yellow-600 mt-2">
                 Zoom in to level 14+ to see individual spots
               </div>
@@ -842,6 +1045,7 @@ export default function CarParkingMap() {
             <Badge variant="outline" className="text-xs" style={{ borderColor: SOURCE_COLORS.rotterdam, color: SOURCE_COLORS.rotterdam }}>RTD</Badge>
             <Badge variant="outline" className="text-xs" style={{ borderColor: SOURCE_COLORS.elburg, color: SOURCE_COLORS.elburg }}>ELB</Badge>
             <Badge variant="outline" className="text-xs" style={{ borderColor: SOURCE_COLORS.zwolle, color: SOURCE_COLORS.zwolle }}>ZWO</Badge>
+            <Badge variant="outline" className="text-xs" style={{ borderColor: SOURCE_COLORS.apeldoorn, color: SOURCE_COLORS.apeldoorn }}>APE</Badge>
           </div>
         </div>
       </div>
@@ -1181,6 +1385,48 @@ export default function CarParkingMap() {
               }}
             />
           )}
+
+          {/* Apeldoorn GeoJSON layer */}
+          {showApeldoornLayer && apeldoornData && zoom >= 12 && (
+            <GeoJSON
+              key="apeldoorn-parking"
+              data={apeldoornData}
+              style={apeldoornStyle}
+              pointToLayer={(feature, latlng) => {
+                const props = feature.properties;
+                const hasRealtime = props.has_realtime;
+                return L.circleMarker(latlng, {
+                  radius: hasRealtime ? 10 : 8,
+                  fillColor: hasRealtime ? "#22c55e" : "#84cc16",
+                  color: hasRealtime ? "#22c55e" : "#84cc16",
+                  weight: hasRealtime ? 3 : 1,
+                  opacity: 0.9,
+                  fillOpacity: hasRealtime ? 0.7 : 0.5,
+                });
+              }}
+              onEachFeature={(feature, layer) => {
+                const props = feature.properties;
+                const capacityStr = props.capacity?.total ? `<div class="text-xs mt-1">${props.capacity.total} spots</div>` : "";
+                const operatorStr = props.operator ? `<div class="text-xs mt-1 text-gray-500">Operator: ${props.operator}</div>` : "";
+                const realtimeStr = props.has_realtime ? `<div class="text-xs mt-1 text-green-600 font-medium">🔴 Real-time data available</div>` : "";
+                const maxHeightStr = props.max_height ? `<div class="text-xs mt-1 text-gray-500">Max height: ${(props.max_height / 100).toFixed(2)}m</div>` : "";
+                layer.bindPopup(`
+                  <div class="min-w-48">
+                    <div class="font-semibold text-sm">${props.name || "Parking Garage"}</div>
+                    <div class="text-xs mt-1">${PARKING_LABELS[props.type] || props.type || "Garage"}</div>
+                    ${realtimeStr}
+                    ${capacityStr}
+                    ${operatorStr}
+                    ${maxHeightStr}
+                    <div class="text-xs mt-2 text-gray-400 border-t pt-1">
+                      <div>Source: ${props.source === 'rdw' ? 'RDW SPDP' : 'OpenStreetMap'}</div>
+                      <div class="font-mono text-[10px]">${props.id || ''}</div>
+                    </div>
+                  </div>
+                `);
+              }}
+            />
+          )}
         </MapContainer>
 
         {/* Zoom indicator */}
@@ -1283,9 +1529,19 @@ export default function CarParkingMap() {
                 </a>
               </div>
             )}
+            <div className="text-xs mt-2 pt-2 border-t border-gray-200 text-gray-400">
+              <div>Source: {SOURCE_LABELS[selectedFacility.source || ''] || selectedFacility.source}</div>
+              {selectedFacility.source && SOURCE_TOOLTIPS[selectedFacility.source] && (
+                <div className="text-[10px] mt-0.5 text-gray-400 italic">{SOURCE_TOOLTIPS[selectedFacility.source].split('.')[0]}.</div>
+              )}
+              {selectedFacility.last_updated && (
+                <div className="text-[10px] mt-0.5">Updated: {new Date(selectedFacility.last_updated).toLocaleDateString()}</div>
+              )}
+            </div>
           </div>
         </Card>
       )}
     </div>
+    </TooltipProvider>
   );
 }
